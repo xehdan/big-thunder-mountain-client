@@ -1,0 +1,5 @@
+.sidebar {
+    flex: 1;
+}
+
+/*sx={{display: 'flex', height: '100vh', maxWidth: '400px', float: 'left'}}*/

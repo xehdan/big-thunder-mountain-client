@@ -1,0 +1,143 @@
+import {Link} from 'react-router-dom';
+import {Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader} from "@mui/material";
+import {
+    AccountTree,
+    Biotech,
+    CalendarMonth,
+    ContactPage,
+    Dashboard,
+    Hotel,
+    Mail,
+    Plumbing,
+    Task
+} from "@mui/icons-material";
+import './sidebar.css'
+
+function Sidebar() {
+    return (
+        <Box className="sidebar" sx={{ display: 'flex'}}>
+            <Drawer variant="permanent"
+                    sx={{width: 240, flexShrink: 0, [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box' }}}
+            {/*<nav aria-label="General Management Tools">
+                <List dense={true}>
+                    <ListSubheader>
+                        General
+                    </ListSubheader>
+                    <ListItemButton>
+                        <Link to="/">
+
+                        Dashboard
+                        </Link>
+                        <Link to="/">
+                        <ListItemIcon primary="Dashboard">
+                            <Dashboard/>
+                        </ListItemIcon>
+
+                        </Link>
+                       <ListItemButton>
+                            <Link to="/" component="ListItemButton">
+                                <ListItemIcon>
+                                    <Dashboard/>
+                                </ListItemIcon>
+                                <ListItemText underline="none" primary="Dashboard"/>
+                            </Link>
+                        </ListItemButton>
+
+                    </ListItemButton>
+                    <ListItem>
+                        <Link to="/tasks">
+                        <ListItemButton>
+
+                                <ListItemIcon>
+                                    <Task/>
+                                </ListItemIcon>
+                                <ListItemText primary="Tasks"/>
+
+                        </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListSubheader>
+                        Management
+                    </ListSubheader>
+                    <ListItem>
+                        <Link to="/projects">
+                        <ListItemButton>
+
+                                <ListItemIcon>
+                                    <AccountTree/>
+                                </ListItemIcon>
+                                <ListItemText primary="Projects"/>
+
+                        </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/assemblies">
+                                <ListItemIcon>
+                                    <Plumbing/>
+                                </ListItemIcon>
+                                <ListItemText primary="Assemblies"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/screedchecks">
+                                <ListItemIcon>
+                                    <Biotech/>
+                                </ListItemIcon>
+                                <ListItemText primary="Screedchecks"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/customers">
+                                <ListItemIcon>
+                                    <ContactPage/>
+                                </ListItemIcon>
+                                <ListItemText primary="Customers"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListSubheader>
+                        Tools
+                    </ListSubheader>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/calendar">
+                                <ListItemIcon>
+                                    <CalendarMonth/>
+                                </ListItemIcon>
+                                <ListItemText primary="Calendar"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/mailer">
+                                <ListItemIcon>
+                                    <Mail/>
+                                </ListItemIcon>
+                                <ListItemText primary="Mailer"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemButton>
+                            <Link to="/booking">
+                                <ListItemIcon>
+                                    <Hotel/>
+                                </ListItemIcon>
+                                <ListItemText primary="Booking"/>
+                            </Link>
+                        </ListItemButton>
+                    </ListItem>
+                </List>
+            </nav> */}
+        </Box>
+    );
+}
+
+export default Sidebar;

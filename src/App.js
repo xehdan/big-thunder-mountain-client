@@ -1,5 +1,18 @@
-import SidebarContainer from "./components/sidebar/SidebarContainer";
 import {createTheme, ThemeProvider} from "@mui/material";
+import Navbar from "./components/navbar/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Sidebar from "./components/sidebar/Sidebar";
+import Home from "./pages/home/Home"
+import CssBaseline from '@mui/material/CssBaseline';
+import "./App.css";
+import ProjectList from "./pages/projects/ProjectList";
+import CustomerList from "./pages/customers/CustomerList";
+import CustomerPage from "./pages/customers/CustomerPage";
+import ScreedcheckList from "./pages/screedchecks/ScreedcheckList";
+import ProjectPage from "./pages/projects/ProjectPage";
+import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage";
+
+
 
 function App() {
 
@@ -11,14 +24,26 @@ function App() {
         }
     })
   return (
+      <CssBaseline>
       <ThemeProvider theme={theme}>
-          <div className="App">
-              <SidebarContainer/>
-              <div className="mainStage">
-                Sample
+          <Router>
+              <Navbar/>
+              <div className="container">
+                <Sidebar/>
+                  <Routes className="mainStage">
+                      <Route path="/" element={<Home/>}/>
+                      <Route path="/projects" element={<ProjectList/>}/>
+                      <Route exact path="/project/:id" element={<ProjectPage/>} />
+                      <Route path="/screedchecks" element={<ScreedcheckList/>}/>
+                      <Route exact path="/screedcheck/:id" element={<ScreedcheckPage/>}/>
+                      <Route path="/customers" element={<CustomerList/>}/>
+                      <Route exact path="/customer/:id" element={<CustomerPage/>}/>
+                  </Routes>
               </div>
-          </div>
+          </Router>
+
       </ThemeProvider>
+      </CssBaseline>
   );
 }
 export default App;

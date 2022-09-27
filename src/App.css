@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    flex: 4;
+    padding-top: 4rem;
+}
+
+.mainStage {
+    height: 100%;
+}
+
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}

@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 //import reportWebVitals from './reportWebVitals';
 
+// contexts
+//import { ProjectProvider} from "./stores/ProjectContext";
+//import { CustomerProvider} from "./stores/CustomerContext";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
