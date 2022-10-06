@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/big-thunder-mountain-client.iml" filepath="$PROJECT_DIR$/.idea/big-thunder-mountain-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../big-thunder-mountain/server/.idea/server.iml" filepath="$PROJECT_DIR$/../big-thunder-mountain/server/.idea/server.iml" />
     </modules>
   </component>
 </project>
