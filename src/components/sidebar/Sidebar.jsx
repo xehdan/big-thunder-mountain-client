@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Drawer,
     Toolbar,
@@ -23,10 +23,12 @@ import {
     Task
 } from '@mui/icons-material'
 import {Link} from "@mui/material";
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useLocation} from 'react-router-dom'
+
 
 function Sidebar() {
     const drawerWidth = 240;
+    const location = useLocation()
     const menuItems = [
         {
             headline: 'General',
@@ -78,6 +80,8 @@ function Sidebar() {
 
     ]
 
+    const [activeElement, setActiveElement] = useState();
+
     return (
         <Drawer
             variant="permanent"
@@ -96,7 +100,7 @@ function Sidebar() {
                                 {menuItem.headline}
                             </ListSubheader>
                             {menuItem.items.map((item, index2) => (
-                                <ListItem disablePadding key={`${item.name}-${index2}`}>
+                                <ListItem selected={(item.to.substring(0,4) === location.pathname.substring(0,4)) ? true : false } disablePadding key={`${item.name}-${index2}`}>
                                     <Link component={RouterLink} to={item.to} underline="none"
                                           sx={{width: '100%'}}>
                                         <ListItemButton>
