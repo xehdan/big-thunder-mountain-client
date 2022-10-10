@@ -1,0 +1,119 @@
+.md-custom-header-controls {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.md-custom-header-nav,
+.md-custom-header-view {
+    width: 300px;
+    padding-top: 0.5rem;
+}
+
+.md-custom-header-button.mbsc-button {
+    font-size: 20px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.md-custom-header .mbsc-segmented {
+    width: 110px;
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.md-custom-header .mbsc-material.mbsc-segmented,
+.md-custom-header .mbsc-windows.mbsc-segmented {
+    padding: 0;
+}
+
+.md-custom-header .mbsc-segmented .mbsc-segmented-button {
+    font-size: 20px;
+    height: 32px;
+    padding: 0;
+}
+
+
+/** Tooltips */
+.md-tooltip .mbsc-popup-content {
+    padding: 0;
+}
+
+.md-tooltip {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.md-tooltip-header {
+    padding: 12px 16px;
+    color: #eee;
+}
+
+.md-tooltip-info {
+    padding: 16px 16px 60px 16px;
+    position: relative;
+    line-height: 32px;
+}
+
+.md-tooltip-time,
+.md-tooltip-status-button {
+    float: right;
+}
+
+.md-tooltip-title {
+    margin-bottom: 15px;
+}
+
+.md-tooltip-text {
+    font-weight: 300;
+}
+
+.md-tooltip-info .mbsc-button {
+    font-size: 14px;
+    margin: 0;
+}
+
+.md-tooltip-info .mbsc-button.mbsc-material {
+    font-size: 12px;
+}
+
+.md-tooltip-view-button {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+.md-tooltip-delete-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+/** Draggable */
+.external-drop-calendar {
+    border-right: 1px solid #ccc;
+}
+
+.external-drop-task {
+    color: #fff;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 8px;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.external-drop-task-blank {
+    color: #999;
+    border-width: 2px;
+    border-style: dotted;
+}
+
+.demo-external-drag-drop.demo-wrapper,
+.demo-external-drag-drop .mbsc-grid,
+.demo-external-drag-drop .mbsc-row,
+.demo-external-drag-drop .external-drop-calendar {
+    height: 100%;
+}
