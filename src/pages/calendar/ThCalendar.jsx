@@ -1,12 +1,10 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     Button,
     CalendarNav,
     CalendarToday,
     Eventcalendar,
     localeDe, Popup,
-    SegmentedGroup,
-    SegmentedItem,
     Draggable,
     toast
 } from "@mobiscroll/react";
@@ -15,7 +13,7 @@ import http from "../../http";
 import moment from "moment";
 import './Scheduler.css'
 import {
-    CalendarMonth, CalendarTodayOutlined, CalendarViewWeek, Close, Crop, List, Psychology,
+    CalendarMonth, CalendarTodayOutlined, CalendarViewWeek, Close, List,
 } from "@mui/icons-material";
 import {ToggleButtonGroup, ToggleButton, Stack} from "@mui/material";
 
@@ -39,9 +37,9 @@ const ThCalendar = () => {
     const [draggableRetreat, setDraggableRetreat] = useState();
     const [draggableBlank, setDraggableBlank] = useState();
     const [planningMode, setPlanningMode] = useState(false);
+    const [tooltipInfo, setTooltipInfo] = useState({})
 
     const activatePlanningMode = (event, newPlanningMode) => {
-        let mode;
         if (newPlanningMode === true) {
             setPlanningMode(true)
         }
@@ -56,16 +54,35 @@ const ThCalendar = () => {
             const newAssemblies = [];
 
             for (const value of response.data.assemblyHead) {
-                var end = moment(value.assembly_date);
+                let end = moment(value.assembly_date);
                 if (value.estimated_duration > 1) {
                     end = end.add(value.estimated_duration - 1, 'd')
+                }
+
+                const project = await http.get(`api/project/deliverycontact/${value.projectId}`)
+                //console.log(project.data)
+                const customer = await http.get(`api/project/customerByProject/${value.projectId}`)
+
+                let name;
+                if (customer.data.customer.company) {
+                    name = customer.data.customer.company
+                } else {
+                    name = `${customer.data.customer.firstName} ${customer.data.customer.lastName}`
                 }
 
                 newAssemblies.push({
                     start: moment(value.assembly_date).format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD') || '',
-                    title: `${value.customer} // P${value.projectId}`,
+                    title: `${name} // P${value.projectId} // L${project.data.deliveryAddress.zipcode} ${project.data.deliveryAddress.city} `,
                     color: '#ccffcc',
+                    projectId: value.projectId,
+                    space: 50,
+                    screedtype: 'Cement',
+                    additionalTasks: [
+                        {
+                            type: 'Screedclosing'
+                        }
+                    ],
                     id: value.id
                 })
             }
@@ -103,6 +120,14 @@ const ThCalendar = () => {
                     }
                 };
                 break;
+            default:
+                calendarView = {
+                    calendar: {
+                        labels: true,
+                        type: 'month'
+                    }
+                };
+                break;
         }
         setView(viewType);
         setCalView(calendarView);
@@ -116,7 +141,7 @@ const ThCalendar = () => {
         return new Date(d.setDate(diff));
     }, []);
     const navigatePage = useCallback((prev) => {
-        if (view == 'calendar') {
+        if (view === 'calendar') {
             const prevNextPage = new Date(currentDate.getFullYear(), currentDate.getMonth() + (prev ? -1 : 1), 1);
             setCurrentDate(prevNextPage);
         } else {
@@ -176,8 +201,9 @@ const ThCalendar = () => {
     const onEventHoverIn = useCallback(async (args) => {
         const event = args.event;
         const response = await http.get(`api/assembly/${event.id}?detail=true`)
-        console.log(response.data)
-        setCurrentEvent(response.data);
+        setCurrentEvent(response.data.assembly);
+        setTooltipInfo(response.data.assembly);
+        console.log(response.data.assembly)
 
         if (timerRef.current) {
             clearTimeout(timerRef.current);
@@ -203,32 +229,26 @@ const ThCalendar = () => {
             setOpen(false);
         }, 200);
     }, []);
-
     const onEventCreate = useCallback((event) => {
         toast({
             message: 'Event dropped'
         })
     })
-
     const setMeetingElm = useCallback((elm) => {
         setDraggableMeeting(elm);
     }, [])
-
     const setRetreatElm = useCallback((elm) => {
         setDraggableRetreat(elm);
     }, [])
-
     const setBlankElm = useCallback((elm) => {
         setDraggableBlank(elm);
     }, [])
-
     const meetingData = {
         title: 'QA meeting',
         color: '#cf4343',
         start: now,
         end: now,
     }
-
     const retreatData = {
         title: 'Team retreat',
         color: '#1064b0',
@@ -273,7 +293,7 @@ const ThCalendar = () => {
                         <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                             <div className="md-tooltip-header" style={{backgroundColor: '#7a7a7a'}}>
                                 <span className="md-tooltip-name-age">info</span>
-                                <span className="md-tooltip-time">time</span>
+                                <span className="md-tooltip-time">status</span>
                             </div>
                             <div className="md-tooltip-info">
                                 <div className="md-tooltip-title">
@@ -286,7 +306,7 @@ const ThCalendar = () => {
                                 <div className="md-tooltip-title">Floortype: <span
                                     className="md-tooltip-location md-tooltip-text">Cement</span></div>
                                 <div className="md-tooltip-title">Space: <span
-                                    className="md-tooltip-location md-tooltip-text">70 m2</span></div>
+                                    className="md-tooltip-location md-tooltip-text">{tooltipInfo.space} m2</span></div>
                                 <div className="md-tooltip-title">Additional Tasks: <span
                                     className="md-tooltip-location md-tooltip-text">true</span></div>
                                 <Button color="secondary" className="md-tooltip-view-button" onClick={() => {
