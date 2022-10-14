@@ -12,6 +12,8 @@ import ScreedcheckList from "./pages/screedchecks/ScreedcheckList";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage";
 import ThCalendar from "./pages/calendar/ThCalendar";
+import AssemblyPage from "./pages/assembly/AssemblyPage";
+import AssemblyList from "./pages/assembly/AssemblyList";
 
 
 
@@ -40,6 +42,8 @@ function App() {
                       <Route path="/customers" element={<CustomerList/>}/>
                       <Route exact path="/customer/:id" element={<CustomerPage/>}/>
                       <Route path="/calendar" element={<ThCalendar/>}/>
+                      <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
+                      <Route path="/assemblies" element={<AssemblyList/>}/>
                   </Routes>
               </div>
           </Router>
