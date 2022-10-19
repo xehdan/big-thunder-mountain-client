@@ -14,6 +14,7 @@ import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage";
 import ThCalendar from "./pages/calendar/ThCalendar";
 import AssemblyPage from "./pages/assembly/AssemblyPage";
 import AssemblyList from "./pages/assembly/AssemblyList";
+import Mailer from "./pages/mailer/Mailer";
 
 
 
@@ -44,6 +45,7 @@ function App() {
                       <Route path="/calendar" element={<ThCalendar/>}/>
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
                       <Route path="/assemblies" element={<AssemblyList/>}/>
+                      <Route exact path="/mailer" element={<Mailer/>}/>
                   </Routes>
               </div>
           </Router>
