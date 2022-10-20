@@ -1,88 +1,39 @@
-import React, {useState} from 'react';
-import {Alert, Box, Button, Grid, Snackbar, Stack, TextField} from "@mui/material";
-import http from "../../http";
-
+import React from 'react';
+import MailAssistant from "../../components/mailer/MailAssistant";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@mui/material";
 
 function Mailer() {
+    const [open, setOpen] = React.useState(false);
 
-    const [mailTo, setMailTo] = useState("");
-    const [subject, setSubject] = useState("");
-    const [message, setMessage] = useState("");
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
-    const [snackbarText, setSnackbarText] = useState("");
-    const [snackbarColor, setSnackbarColor] = useState();
-
-    async function sendMail() {
-
-        try {
-            const post = await http.post(`api/mailer`, {
-                mailTo,
-                subject,
-                message
-            });
-            if (post.data.message.status == 200) {
-                setSnackbarText(post.data.message.message)
-                setSnackbarColor("success")
-                setSnackbarOpen(true)
-            } else {
-                console.log(post)
-                setSnackbarText(post.data.message.message)
-                setSnackbarColor("error")
-            }
-        } catch (e) {
-            console.log(e.message)
-            setSnackbarText(e.message)
-            setSnackbarColor("error")
-        } finally {
-            setSnackbarOpen(true)
-        }
-
-    }
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setSnackbarOpen(false);
+    const handleClickOpen = () => {
+        setOpen(true);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <Grid container spacing={2} sx={{ margin: 3 }}>
-            <Grid item xs={12}
-                component="form"
-            >
-                <Stack spacing={3}>
-                    <TextField
-                        label="TO: (e-mail)"
-                        value={mailTo}
-                        onChange={(event) => setMailTo(event.target.value)}
-                    />
-                    <TextField
-                        label="Subject"
-                        value={subject}
-                        onChange={(event) => setSubject(event.target.value)}
-                    />
-                    <TextField
-                        label="Message"
-                        value={message}
-                        onChange={(event) => setMessage(event.target.value)}
-                        multiline
-                        rows={10}
-                    />
-                        <Button variant={"outlined"} onClick={() => sendMail()}>Send</Button>
-                </Stack>
-
-
-            </Grid>
-            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleClose}  anchorOrigin={{vertical:'bottom', horizontal: 'right'}}>
-                <Alert onClose={handleClose} severity={snackbarColor} sx={{ width: '100%'}}>
-                    {snackbarText}
-                </Alert>
-            </Snackbar>
-        </Grid>
-
+        <div>
+            <Button variant="outlined" onClick={handleClickOpen}>
+                Open Mailer
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Subscribe</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        To subscribe to this website, please enter your email address here. We
+                        will send updates occasionally.
+                    </DialogContentText>
+                    <MailAssistant/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Subscribe</Button>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
-}
+};
 
 export default Mailer;

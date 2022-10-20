@@ -120,7 +120,7 @@ function Sidebar() {
                                 <ListItemIcon>
                                     <Mail/>
                                 </ListItemIcon>
-                                <ListItemText primary="Mailer"/>
+                                <ListItemText primary="MailAssistant"/>
                             </Link>
                         </ListItemButton>
                     </ListItem>
