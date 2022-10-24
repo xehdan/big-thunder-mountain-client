@@ -15,6 +15,7 @@ import ThCalendar from "./pages/calendar/ThCalendar";
 import AssemblyPage from "./pages/assembly/AssemblyPage";
 import AssemblyList from "./pages/assembly/AssemblyList";
 import Mailer from "./pages/mailer/Mailer";
+import BookingDashboard from "./pages/booking/BookingDashboard";
 
 
 
@@ -46,6 +47,7 @@ function App() {
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
                       <Route path="/assemblies" element={<AssemblyList/>}/>
                       <Route exact path="/mailer" element={<Mailer/>}/>
+                      <Route exact path="/booking" element={<BookingDashboard/>}/>
                   </Routes>
               </div>
           </Router>

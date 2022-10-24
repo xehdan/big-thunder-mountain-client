@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Box, Button, FormControl, Grid, InputLabel, Snackbar, Stack, TextField} from "@mui/material";
+import {Alert, Button, FormControl, Grid, Snackbar, Stack, TextField} from "@mui/material";
 import http from "../../http";
 import Editor from 'ckeditor5-custom-build/build/ckeditor'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -22,7 +22,7 @@ function MailAssistant() {
                 subject,
                 message
             });
-            if (post.data.message.status == 200) {
+            if (post.data.message.status === 200) {
                 setSnackbarText(post.data.message.message)
                 setSnackbarColor("success")
                 setSnackbarOpen(true)

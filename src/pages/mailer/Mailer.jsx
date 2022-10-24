@@ -1,6 +1,6 @@
 import React from 'react';
 import MailAssistant from "../../components/mailer/MailAssistant";
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
 function Mailer() {
     const [open, setOpen] = React.useState(false);
