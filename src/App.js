@@ -16,21 +16,39 @@ import AssemblyPage from "./pages/assembly/AssemblyPage";
 import AssemblyList from "./pages/assembly/AssemblyList";
 import Mailer from "./pages/mailer/Mailer";
 import BookingDashboard from "./pages/booking/BookingDashboard";
-
+import {useMemo} from "react";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 function App() {
-
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
+/*
     const theme = createTheme({
         palette: {
+            mode: 'dark',
             primary: {
                 main: '#f7a700'
             }
         }
-    })
+    })*/
+
+    const theme = useMemo(
+        () =>
+            createTheme({
+                palette: {
+                    mode: prefersDarkMode ? 'dark' : 'light',
+                    primary: {
+                        main: '#f7a700'
+                    }
+                }
+            }),
+        [prefersDarkMode]
+    )
+
+
   return (
-      <CssBaseline>
       <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Router>
               <Navbar/>
               <div className="container">
@@ -53,7 +71,6 @@ function App() {
           </Router>
 
       </ThemeProvider>
-      </CssBaseline>
   );
 }
 export default App;

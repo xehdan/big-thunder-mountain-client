@@ -101,7 +101,7 @@ function Sidebar() {
                             </ListSubheader>
                             {menuItem.items.map((item, index2) => (
                                 <ListItem selected={(item.to.substring(0,4) === location.pathname.substring(0,4)) ? true : false } disablePadding key={`${item.name}-${index2}`}>
-                                    <Link component={RouterLink} to={item.to} underline="none"
+                                    <Link component={RouterLink} key={`${item}-${index2}`} to={item.to} underline="none"
                                           sx={{width: '100%'}}>
                                         <ListItemButton>
                                             <ListItemIcon>

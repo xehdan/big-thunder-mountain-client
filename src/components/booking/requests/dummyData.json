@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "type": "Assembly",
+    "guests": [
+      {
+        "name": "Monteur 1"
+      },
+      {
+        "name": "Monteur 2"
+      }
+    ],
+    "nightsToStay": 2,
+    "zipcodeSite": 79098,
+    "citySite": "Freiburg",
+    "arrivalDate": "2022-10-30",
+    "geocoordinates": {
+      "type": "Point",
+      "coordinates": [
+        7.848351,
+        47.995946
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "type": "Assembly",
+    "guests": [
+      {
+        "name": "Monteur 1"
+      },
+      {
+        "name": "Monteur 2"
+      }
+    ],
+    "nightsToStay": 1,
+    "zipcodeSite": 76131,
+    "citySite": "Karlsruhe",
+    "arrivalDate": "2022-11-05",
+    "geocoordinates": {
+      "type": "Point",
+      "coordinates": [
+        8.425825,
+        49.011822
+      ]
+    }
+  }
+]
