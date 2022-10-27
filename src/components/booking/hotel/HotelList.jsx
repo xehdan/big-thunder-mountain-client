@@ -110,9 +110,9 @@ function HotelList(props) {
                 pageSize={20}
                 rowsPerPageOptions={[10, 20, 30]}
                 density={'compact'}
-                components={{ Toolbar: GridToolbar }}
+                slot={{ Toolbar: GridToolbar }}
                 onRowClick={handleRowClick}
-                componentsProps={{
+                slotProps={{
                     toolbar: {
                         showQuickFilter: true,
                         quickFilterProps: { debounceMs: 500 },

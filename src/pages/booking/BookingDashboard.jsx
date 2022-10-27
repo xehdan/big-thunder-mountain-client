@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Card, CardMedia, CircularProgress, Grid, Typography} from "@mui/material";
+import {Card, CardMedia, CircularProgress, Grid, Stack, Typography, Item, Button} from "@mui/material";
 import HotelList from "../../components/booking/hotel/HotelList";
 import RequestList from "../../components/booking/requests/RequestList";
 import StandardMap from "../../components/map/StandardMap";
 import http from "../../http";
 
 import stayRequests from '../../components/booking/requests/dummyData.json'
+import {Add, LocalHotel} from "@mui/icons-material";
 
 function BookingDashboard() {
     const [markers, setMarkers] = useState([])
@@ -56,19 +57,25 @@ function BookingDashboard() {
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={5}>
                 <Card>
                     <CardMedia>
                         {loaded ? <StandardMap chosenFlyToCenter={flyToCenter} showHQ={true} height={'470px'} mapCenter={mapCenter} markers={markers} /> : <Card style={{ minHeight: '470px', height: '100%'}}><CircularProgress /></Card>}
                     </CardMedia>
                 </Card>
             </Grid>
-            <Grid item xs={12} sm={8} >
-                <Typography variant="h3" gutterBottom>Request List</Typography>
-                {loaded ? <RequestList clickHandler={handleClick} requests={stayRequests}/> : <Card style={{ minHeight: '470px', height: '100%'}}><CircularProgress /></Card>}
+            <Grid item xs={12} sm={7} >
+                <Grid container justifyContent="space-between" alignItems="center">
+                    <Grid item xs={10}><Typography variant="h3" gutterBottom>Request List</Typography></Grid>
+                    <Grid item xs={2} sx={{ textAlign: 'right' }}><Button variant="outlined" color="success" startIcon={<Add/>}>New Request</Button></Grid>
+                </Grid>
+                 <RequestList clickHandler={handleClick} requests={stayRequests}/>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="h3" gutterBottom>Hotel List</Typography>
+                <Grid container justifyContent="space-between" alignItems="center">
+                    <Grid item xs={10}><Typography variant="h3" gutterBottom>Hotel List</Typography></Grid>
+                    <Grid item xs={2} sx={{ textAlign: 'right' }}><Button variant="contained" color="success" startIcon={<LocalHotel/>}>New Hotel</Button></Grid>
+                </Grid>
                 <HotelList clickHandler={handleClick} mapCenter={mapCenter} hotels={hotels}/>
             </Grid>
         </Grid>

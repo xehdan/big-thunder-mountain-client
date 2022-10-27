@@ -2,6 +2,7 @@ import React from 'react';
 import {Box} from "@mui/material";
 import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
 import {MapRounded} from "@mui/icons-material";
+import moment from "moment";
 
 function RequestList(props) {
 
@@ -13,12 +14,33 @@ function RequestList(props) {
             headerName: 'Arrival Date',
             type: 'date',
             width: 110,
+            valueGetter: params => {
+                return new Date(params.row.arrivalDate)
+            }
+        },
+        {
+            field: 'departureDate',
+            headerName: 'Departure Date',
+            type: 'date',
+            width: 110,
+            valueGetter: params => {
+                return moment(params.row.arrivalDate).add(params.row.nightsToStay, 'd').format('D.M.yyyy')
+            }
         },
         {
             field: 'nightsToStay',
             headerName: 'Nights to stay',
             type: 'number',
             width: 110,
+        },
+        {
+            field: 'calendarWeek',
+            headerName: 'Calendar Week',
+            type: 'number',
+            width: 110,
+            valueGetter: params => {
+                return moment(params.row.arrivalDate).isoWeek()
+            }
         },
         {
             field: 'guests',

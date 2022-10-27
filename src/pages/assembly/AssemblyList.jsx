@@ -108,8 +108,8 @@ function AssemblyList() {
                 rowsPerPageOptions={[20, 100, 500]}
                 checkboxSelection={selectedAssemblies}
                 disableDensitySelector
-                components={{ Toolbar: GridToolbar }}
-                componentsProps={{
+                slots={{ Toolbar: GridToolbar }}
+                slotProps={{
                     toolbar: {
                         showQuickFilter: true,
                         quickFilterProps: { debounceMs: 500 },

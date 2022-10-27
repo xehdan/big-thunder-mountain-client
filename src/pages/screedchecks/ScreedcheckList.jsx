@@ -139,8 +139,8 @@ const ScreedcheckList = () => {
                 rowsPerPageOptions={[20, 100, 500]}
                 checkboxSelection={selectedScreedcheck}
                 disableDensitySelector
-                components={{ Toolbar: GridToolbar }}
-                componentsProps={{
+                slots={{ Toolbar: GridToolbar }}
+                slotProps={{
                     toolbar: {
                         showQuickFilter: true,
                         quickFilterProps: { debounceMs: 500 },
