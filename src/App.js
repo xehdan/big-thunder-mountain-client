@@ -18,6 +18,7 @@ import Mailer from "./pages/mailer/Mailer";
 import BookingDashboard from "./pages/booking/BookingDashboard";
 import {useMemo} from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CustomerCreate from "./pages/customers/CustomerCreate";
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
                       <Route path="/screedchecks" element={<ScreedcheckList/>}/>
                       <Route exact path="/screedcheck/:id" element={<ScreedcheckPage/>}/>
                       <Route path="/customers" element={<CustomerList/>}/>
+                      <Route path="/customer/create" element={<CustomerCreate/>}/>
                       <Route exact path="/customer/:id" element={<CustomerPage/>}/>
                       <Route path="/calendar" element={<ThCalendar/>}/>
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
