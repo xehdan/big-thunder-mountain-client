@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Box} from "@mui/material";
 import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
 import http from "../../http";
-import {Link} from "react-router-dom";
-import {Contacts, Edit, Mail, Note, Phone, Visibility} from "@mui/icons-material";
+import {Mail, Note, Phone} from "@mui/icons-material";
 
 const ContactTable = (props) => {
 
@@ -15,7 +13,7 @@ const ContactTable = (props) => {
             setContacts(response.data.customerContacts);
         };
         return readAllCustomers
-    }, [])
+    }, [props])
 
 
     function getContactTitle(params) {

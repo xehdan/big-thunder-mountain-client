@@ -11,18 +11,14 @@ import {
     Chip,
     Divider,
     Grid,
-    List,
     Tab,
     Tabs,
-    Typography,
-    ListItem,
-    Stack
+    Typography
 } from "@mui/material";
 import ContactTable from "../../components/contact/ContactTable";
 import AddressTable from "../../components/contact/AddressTable";
 import CustomerTimeline from "../../components/customer/CustomerTimeline";
 import ProjectCard from "../../components/project/ProjectCard";
-import CustAvatar from "../../components/customComp/CustAvatar";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -63,7 +59,7 @@ function CustomerPage() {
             setCustomer(response.data.customer);
         };
         return readCustomer
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const readProjects = async () => {
@@ -71,17 +67,17 @@ function CustomerPage() {
             setProjects(response.data.projects);
         };
         return readProjects
-    }, [])
+    }, [id])
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
     };
 
-    function stringToColor(string) {
+    /*function stringToColor(string) {
         let hash = 0;
         let i;
 
-        /* eslint-disable no-bitwise */
+        /!* eslint-disable no-bitwise *!/
         for (i = 0; i < string.length; i += 1) {
             hash = string.charCodeAt(i) + ((hash << 5) - hash);
         }
@@ -92,10 +88,10 @@ function CustomerPage() {
             const value = (hash >> (i * 8)) & 0xff;
             color += `00${value.toString(16)}`.slice(-2);
         }
-        /* eslint-enable no-bitwise */
+        /!* eslint-enable no-bitwise *!/
 
         return color;
-    }
+    }*/
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>

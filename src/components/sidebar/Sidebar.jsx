@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Drawer,
     Toolbar,
@@ -79,8 +79,6 @@ function Sidebar() {
         }
 
     ]
-
-    const [activeElement, setActiveElement] = useState();
 
     return (
         <Drawer

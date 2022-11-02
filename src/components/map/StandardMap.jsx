@@ -4,7 +4,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 //import axios from "axios";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {Button} from "@mui/material";
 
 function StandardMap(props) {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
@@ -17,8 +16,11 @@ function StandardMap(props) {
     //const [newMapCenter, setNewMapCenter] = useState(props.NewMapCenter)
     const [mapCenter, setMapCenter] = useState(props.mapCenter)
     const [zoom, setZoom] = useState(7);
-    const [language, setLangauge] = useState(new MapboxLanguage())
+    // eslint-disable-next-line no-unused-vars
+    const [language, setLanguage] = useState(new MapboxLanguage())
+    // eslint-disable-next-line no-unused-vars
     const [markers, setMarkers] = useState(props.markers)
+    // eslint-disable-next-line no-unused-vars
     const [newMapCenter, setNewMapCenter] = useState(props.mapCenter)
 
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
@@ -42,6 +44,7 @@ function StandardMap(props) {
                 for (let markersKey in markers) {
                     const marker = markers[markersKey]
                     try {
+                        // eslint-disable-next-line no-unused-vars
                         const markers = new mapboxgl.Marker({
                             color: marker.color
                         })
@@ -65,6 +68,7 @@ function StandardMap(props) {
 
             // Show Headquaters
             if (props.showHQ) {
+                // eslint-disable-next-line no-unused-vars
                 const hqMarker = new mapboxgl.Marker({color: '#f7a700'})
                     .setLngLat([10.0186865,48.50576])
                     .setPopup(

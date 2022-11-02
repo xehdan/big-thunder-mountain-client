@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {DataGrid, GridActionsCellItem, GridToolbar} from "@mui/x-data-grid";
 import http from "../../http";
-import {Contacts, Edit, Visibility} from "@mui/icons-material";
+import {Edit, Visibility} from "@mui/icons-material";
 
 function AssemblyList() {
-    let navigate = useNavigate();
     const [assemblies, setAssemblies] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [selectedAssemblies, setSelectedAssemblies] = useState([]);
 
     useEffect(() => {

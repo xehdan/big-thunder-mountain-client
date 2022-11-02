@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Box, Chip, Rating} from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
-//import hotels from './dummyData.json'
-import http from "../../../http";
 import {CreditCard, Payments} from "@mui/icons-material";
 
 function HotelList(props) {

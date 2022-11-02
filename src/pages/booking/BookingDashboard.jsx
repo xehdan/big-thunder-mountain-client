@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, CardMedia, CircularProgress, Grid, Stack, Typography, Item, Button} from "@mui/material";
+import {Card, CardMedia, CircularProgress, Grid, Typography, Button} from "@mui/material";
 import HotelList from "../../components/booking/hotel/HotelList";
 import RequestList from "../../components/booking/requests/RequestList";
 import StandardMap from "../../components/map/StandardMap";
@@ -12,6 +12,7 @@ function BookingDashboard() {
     const [markers, setMarkers] = useState([])
     const [hotels, setHotels] = useState([])
     const [loaded, setLoaded] = useState(false)
+    // eslint-disable-next-line no-unused-vars
     const [mapCenter, setMapCenter] = useState([10.0186865, 48.50576])
 
     const [flyToCenter, setFlyToCenter] = useState(null)
@@ -51,6 +52,7 @@ function BookingDashboard() {
 
         }
         return readAllHotels
+        // eslint-disable-next-line
     }, [])
 
 

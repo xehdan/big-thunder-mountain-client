@@ -4,12 +4,14 @@ import { utcToZonedTime, format } from 'date-fns-tz'
 
 import http from "../../http";
 import {Link} from "react-router-dom";
-import {Contacts, Edit, Visibility} from "@mui/icons-material";
+import {Edit, Visibility} from "@mui/icons-material";
 
 
 function ProjectList() {
     const [data, setData] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(true);
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(null);
 
 

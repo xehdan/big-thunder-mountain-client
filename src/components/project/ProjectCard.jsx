@@ -15,7 +15,7 @@ const ProjectCard = (props) => {
         };
 
         return readProduct
-    }, [])
+    }, [props])
 
     return (
         <Card>

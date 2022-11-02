@@ -36,7 +36,7 @@ const ProjectPage = () => {
             setAssemblies(response.data.project.AssemblyHeads)
         }
         return readProject
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const readCustomer = async () => {
@@ -48,7 +48,7 @@ const ProjectPage = () => {
             setCustomer(response.data.customer);
         };
         return readCustomer
-    }, [])
+    }, [id])
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>

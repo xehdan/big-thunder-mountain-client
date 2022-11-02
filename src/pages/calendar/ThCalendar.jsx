@@ -23,13 +23,13 @@ const ThCalendar = () => {
 
     const [assemblies, setAssemblies] = useState([]);
     const [view, setView] = useState('month');
-    const [myEvents, setEvents] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [calView, setCalView] = useState({
         calendar: {
             labels: true
         }
     });
+    // eslint-disable-next-line no-unused-vars
     const [currentEvent, setCurrentEvent] = useState(null);
     const [isOpen, setOpen] = useState(false);
     const [anchor, setAnchor] = useState(null);
@@ -229,6 +229,7 @@ const ThCalendar = () => {
             setOpen(false);
         }, 200);
     }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const onEventCreate = useCallback((event) => {
         toast({
             message: 'Event dropped'

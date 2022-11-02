@@ -1,24 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {Box} from "@mui/material";
-import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
+import {DataGrid} from "@mui/x-data-grid";
 import http from "../../http";
-import {Link} from "react-router-dom";
-import {Contacts, Edit, Mail, Note, Phone, Visibility} from "@mui/icons-material";
 
 const AddressTable = (props) => {
 
     const [addresses, setAddresses] = useState([]);
     useEffect(() => {
         const readAllAddresses = async () => {
-            const response = await http.get(`/api/customer/address/${props.customerId}`);
+            const prop = props.customerId
+            const response = await http.get(`/api/customer/address/${prop.customerId}`);
             //const responseArr = Object.values(response.data.customer);
             setAddresses(response.data.customerAddresses);
         };
         return readAllAddresses
-    }, [])
+    }, [props])
 
 
-    function getContactTitle(params) {
+    /*function getContactTitle(params) {
         if (params.row.ContactTitle.gender === "male") {
             return "Mr."
         } else if (params.row.ContactTitle.gender === "female") {
@@ -26,16 +24,16 @@ const AddressTable = (props) => {
         } else {
             return "--"
         }
-    }
+    }*/
 
-    function sendMail(email) {
+    /*function sendMail(email) {
         window.location.href = `mailto:${email}`;
     }
 
     function phone(phoneNumber) {
         window.location.href = `tel:${phoneNumber}`
         //window.location.href = 'phon'
-    }
+    }*/
 
     const columns = [
         {

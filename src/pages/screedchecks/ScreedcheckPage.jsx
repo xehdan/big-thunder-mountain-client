@@ -18,7 +18,7 @@ const ScreedcheckPage = () => {
             setScreedcheck(response.data.screedcheck)
         }
         return readScreedcheck
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const readCustomer = async () => {
@@ -30,7 +30,7 @@ const ScreedcheckPage = () => {
             setCustomer(response.data.customer);
         };
         return readCustomer
-    }, [])
+    }, [id])
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>
@@ -38,6 +38,11 @@ const ScreedcheckPage = () => {
                 <Card>
                     <CardContent>
                         {JSON.stringify(screedcheck)}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent>
+                        {JSON.stringify(customer)}
                     </CardContent>
                 </Card>
             </Grid>

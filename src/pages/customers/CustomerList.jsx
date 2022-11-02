@@ -4,23 +4,21 @@ import {
     DataGrid, GridActionsCellItem,
     GridToolbar
 } from "@mui/x-data-grid";
-import {Avatar, Chip, Button} from '@mui/material';
+import {Avatar, Chip} from '@mui/material';
 import {
     ConnectWithoutContact,
     Google,
     YouTube,
-    Delete,
-    Security,
-    FileCopy,
-    Mail,
     Visibility, Edit, Contacts
 } from "@mui/icons-material";
 import {Link, useNavigate} from "react-router-dom";
 import CustAvatar from "../../components/customComp/CustAvatar";
 
 function CustomerList() {
+    // eslint-disable-next-line no-unused-vars
     let navigate = useNavigate();
     const [customers, setCustomers] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [selectedCustomers, setSelectedCustomers] = useState([]);
 
 
@@ -41,13 +39,10 @@ function CustomerList() {
         switch (value) {
             case "SEO/SEA":
                 return <Avatar sx={{ width: 24, height: 24}}><Google sx={{ width: 15, height: 15}}/></Avatar>;
-                break;
             case "Youtube":
                 return <Avatar sx={{ width: 24, height: 24}}><YouTube sx={{ width: 15, height: 15}}/></Avatar>
-                break;
             case "WOM":
                 return <Avatar sx={{ width: 24, height: 24}}><ConnectWithoutContact sx={{ width: 15, height: 15}}/></Avatar>
-                break;
             default:
                 return "Unknown";
         }
@@ -91,7 +86,7 @@ function CustomerList() {
     }
 
 
-    function getAvatar(params) {
+    /*function getAvatar(params) {
         let name;
         if (params.row.company){
             name = params.row.company[0]
@@ -100,7 +95,7 @@ function CustomerList() {
         }
         //<Avatar sx={{ bgcolor: stringToColor(name) }}>{name}</Avatar>
         return <CustAvatar name={name}/>
-    }
+    }*/
 
     function getCustomerGroup(params) {
         let groupArray = params.row
@@ -194,10 +189,10 @@ function CustomerList() {
         },
         ];
 
-    const goToCustomerPage = (params) =>
+    /*const goToCustomerPage = (params) =>
         navigate({
             pathname: `/customer/${params}`
-        });
+        });*/
 
     useEffect(() => {
         const readAllCustomers = async () => {

@@ -38,7 +38,8 @@ function AssemblyPage() {
         };
         //return readAssembly
         return readAll
-    }, [])
+
+    }, [id])
 
 
 

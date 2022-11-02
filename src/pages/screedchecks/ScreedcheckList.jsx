@@ -8,6 +8,7 @@ import {Edit, Visibility} from "@mui/icons-material";
 
 const ScreedcheckList = () => {
     const [screedcheck, setScreedcheck] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [selectedScreedcheck, setSelectedScreedchecks] = useState([])
 
     useEffect(() => {
