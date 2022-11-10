@@ -12,7 +12,7 @@ import {
     ListSubheader
 } from '@mui/material';
 import {
-    AccountTree,
+    AccountTree, AssignmentLate,
     Biotech,
     CalendarMonth,
     ContactPage,
@@ -55,6 +55,10 @@ function Sidebar() {
                 name: 'Screedchecks',
                 icon: <Biotech color="primary"/>,
                 to: '/screedchecks'
+            },{
+                name: 'Complaints',
+                icon: <AssignmentLate color="primary"/>,
+                to: '/complaints'
             }, {
                 name: 'Customers',
                 icon: <ContactPage color="primary"/>,

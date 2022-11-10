@@ -19,6 +19,8 @@ import BookingDashboard from "./pages/booking/BookingDashboard";
 import {useMemo} from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CustomerCreate from "./pages/customers/CustomerCreate";
+import ComplaintList from "./pages/complaint/ComplaintList";
+import ComplaintPage from "./pages/complaint/ComplaintPage";
 
 
 function App() {
@@ -66,6 +68,8 @@ function App() {
                       <Route path="/calendar" element={<ThCalendar/>}/>
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
                       <Route path="/assemblies" element={<AssemblyList/>}/>
+                      <Route exact path="/complaint/:id" element={<ComplaintPage/>}/>
+                      <Route path="/complaints" element={<ComplaintList/>}/>
                       <Route exact path="/mailer" element={<Mailer/>}/>
                       <Route exact path="/booking" element={<BookingDashboard/>}/>
                   </Routes>
