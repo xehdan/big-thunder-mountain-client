@@ -5,6 +5,8 @@ import {Card, CardContent, Grid, Chip, Button, CardActions, Stack} from "@mui/ma
 import {DataGrid} from "@mui/x-data-grid";
 import {useNavigate} from "react-router-dom";
 import {Approval, CalendarMonthSharp, DoDisturb, HourglassBottom, Print} from "@mui/icons-material";
+import {PDFDownloadLink} from "@react-pdf/renderer";
+import ComplaintProtocol from "../../components/pdfGen/ComplaintProtocol";
 
 
 function ComplaintPage(props) {
@@ -79,6 +81,25 @@ function ComplaintPage(props) {
         return readComplaint
     }, [props])
 
+    const LinkBehavior = React.forwardRef((props, ref) => (
+        <PDFDownloadLink
+            document={
+            <ComplaintProtocol
+                title="test"
+                author="tbf"
+                subject="tbf"
+                keywords="tbf"
+                creator="test"
+
+            />}
+            fileName="somename.pdf"
+            ref={ref}
+            to="/"
+            {...props}
+            role={undefined}
+        />
+    ));
+
 
 
     return (
@@ -88,7 +109,7 @@ function ComplaintPage(props) {
                     <CardContent>
                         <h1>Complaint ID: {id}</h1>
                         <p>Transaction ID: {complaint.transactionId}</p>
-                        <p>Status: <Chip label={complaint.status} /></p>
+                        <div>Status: <Chip label={complaint.status} /></div>
                         <p>Completed: {complaint.completed ? 'yes' : 'no' } </p>
                         <p>Created At:  {complaint.createdAt}</p>
                         <p>Last Update:  {complaint.updatedAt}</p>
@@ -126,7 +147,7 @@ function ComplaintPage(props) {
                         <Button label="Decline" startIcon={<DoDisturb/>} color="error" variant="contained">Decline</Button>
                     </Stack>
                     <Stack spacing={2}>
-                        <Button label="Print Protocol" startIcon={<Print/>}>Protocol</Button>
+                        <Button component={LinkBehavior} startIcon={<Print/>}>Protocol</Button>
                         <Button label="Set to review" startIcon={<CalendarMonthSharp/>}>Set Review</Button>
                     </Stack>
                     </CardContent>

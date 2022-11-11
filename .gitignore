@@ -12,6 +12,7 @@
 /build
 
 /public/system_logos
+/public/font
 
 # misc
 .DS_Store
