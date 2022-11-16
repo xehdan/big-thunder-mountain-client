@@ -1,15 +1,15 @@
 import http from "../../http";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     DataGrid, GridActionsCellItem,
     GridToolbar
 } from "@mui/x-data-grid";
-import {Avatar, Chip} from '@mui/material';
+import {Avatar, Button, Card, Chip, Grid, Typography} from '@mui/material';
 import {
     ConnectWithoutContact,
     Google,
     YouTube,
-    Visibility, Edit, Contacts
+    Visibility, Edit, Contacts, Add
 } from "@mui/icons-material";
 import {Link, useNavigate} from "react-router-dom";
 import CustAvatar from "../../components/customComp/CustAvatar";
@@ -205,7 +205,17 @@ function CustomerList() {
 
 
     return (
-        <div style={{ height: '80vh', width: '100%'}}>
+        <Grid container sx={{marginTop: 5}}>
+            <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+                <Grid container>
+                    <Grid item xs={10}>
+                        <Typography variant="h2" component="h1" gutterBottom>Customers</Typography>
+                    </Grid>
+                    <Grid item xs={2} sx={{textAlign: 'right'}}>
+                        <Button variant="outlined" color="success" startIcon={<Add/>}>New Customer</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Card>
             <DataGrid
                 columns={columns}
                 rows={customers}
@@ -215,6 +225,7 @@ function CustomerList() {
                 checkboxSelection={selectedCustomers}
                 disableDensitySelector
                 slots={{ Toolbar: GridToolbar }}
+                sx={{ height: '80vh'}}
                 slotProps={{
                     toolbar: {
                         showQuickFilter: true,
@@ -222,7 +233,11 @@ function CustomerList() {
                     }
                 }}
             />
-        </div>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
 
 
     );

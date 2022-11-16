@@ -58,7 +58,10 @@ function BookingDashboard() {
 
 
     return (
-        <Grid container spacing={2} sx={{ margin: 3}}>
+        <Grid container columnSpacing={2} rowSpacing={4} sx={{ marginTop: 2, paddingX: 3}} >
+            <Grid item xs={12}>
+                <Typography variant="h2" component="h1" >Booking</Typography>
+            </Grid>
             <Grid item xs={12} sm={5}>
                 <Card>
                     <CardMedia>

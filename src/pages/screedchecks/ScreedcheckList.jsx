@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {DataGrid, GridActionsCellItem, GridToolbar} from "@mui/x-data-grid";
 import http from "../../http";
 import moment from "moment";
-import {Chip} from "@mui/material";
+import {Button, Card, Chip, Grid, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {Edit, Visibility} from "@mui/icons-material";
+import {Add, Edit, Visibility} from "@mui/icons-material";
 
 const ScreedcheckList = () => {
     const [screedcheck, setScreedcheck] = useState([])
@@ -46,9 +46,9 @@ const ScreedcheckList = () => {
             //case 'Further checks necessary':
             //    return <Chip size="small" label={status} color="warning"/>
             case 'Started':
-                return <Chip size="small" label={status} />
+                return <Chip size="small" label={status}/>
             case 'Dated':
-                return <Chip size="small" label={status} />
+                return <Chip size="small" label={status}/>
             case 'New':
                 return <Chip size="small" label={status} color="danger"/>
             default:
@@ -59,12 +59,12 @@ const ScreedcheckList = () => {
     function getResult(params) {
         let result
         if ('ScreedcheckDetail' in params.row) {
-           /* if (params.row.ScreedcheckDetail.assembly_possible === true)*/
+            /* if (params.row.ScreedcheckDetail.assembly_possible === true)*/
             result = true
             /*else {
                 result = false
             }*/
-        } else{
+        } else {
             result = false
         }
 
@@ -114,14 +114,14 @@ const ScreedcheckList = () => {
             width: 150,
             align: 'right',
             getActions: (params) => [
-                <Link  to={`/screedcheck/${params.id}`}>
+                <Link to={`/screedcheck/${params.id}`}>
                     <GridActionsCellItem
-                        icon={<Visibility />}
+                        icon={<Visibility/>}
                         label="View"
                         //onClick={goToCustomerPage(params.id)}
                     /></Link>,
                 <GridActionsCellItem
-                    icon={<Edit />}
+                    icon={<Edit/>}
                     label="Edit"
                     //onClick={toggleAdmin(params.id)}
                     showInMenu
@@ -131,25 +131,39 @@ const ScreedcheckList = () => {
     ]
 
     return (
-        <div style={{ height: '80vh', width: '100%'}}>
-            <DataGrid
-                columns={columns}
-                rows={screedcheck}
-                autoPageSize
-                pageSize={20}
-                rowsPerPageOptions={[20, 100, 500]}
-                checkboxSelection={selectedScreedcheck}
-                disableDensitySelector
-                slots={{ Toolbar: GridToolbar }}
-                slotProps={{
-                    toolbar: {
-                        showQuickFilter: true,
-                        quickFilterProps: { debounceMs: 500 },
-                    }
-                }}
-            />
-            {JSON.stringify(screedcheck)}
-        </div>
+        <Grid container sx={{marginTop: 5}}>
+            <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+                <Grid container>
+                    <Grid item xs={10}>
+                        <Typography variant="h2" component="h1" gutterBottom>Screedchecks</Typography>
+                    </Grid>
+                    <Grid item xs={2} sx={{textAlign: 'right'}}>
+                        <Button variant="outlined" color="success" startIcon={<Add/>}>New Screedcheck</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Card>
+                            <DataGrid
+                                columns={columns}
+                                rows={screedcheck}
+                                autoPageSize
+                                pageSize={20}
+                                rowsPerPageOptions={[20, 100, 500]}
+                                checkboxSelection={selectedScreedcheck}
+                                disableDensitySelector
+                                slots={{Toolbar: GridToolbar}}
+                                sx={{ height: '80vh'}}
+                                slotProps={{
+                                    toolbar: {
+                                        showQuickFilter: true,
+                                        quickFilterProps: {debounceMs: 500},
+                                    }
+                                }}
+                            />
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     );
 };
 

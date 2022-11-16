@@ -4,7 +4,8 @@ import { utcToZonedTime, format } from 'date-fns-tz'
 
 import http from "../../http";
 import {Link} from "react-router-dom";
-import {Edit, Visibility} from "@mui/icons-material";
+import {Add, Edit, Visibility} from "@mui/icons-material";
+import {Button, Grid, Typography, Card} from "@mui/material";
 
 
 function ProjectList() {
@@ -120,11 +121,28 @@ function ProjectList() {
     ];
 
     return (
-            <DataGrid
-            columns={columns}
-            rows={data}
-            sx={{ width: '80vw', height: '80vh'}}
-            />
+        <Grid container sx={{marginTop: 5}}>
+            <Grid item xs={12} spacing={2} sx={{ paddingX: 3}}>
+                <Grid container>
+                    <Grid item xs={10}>
+                        <Typography variant="h2" component="h1" gutterBottom>Projects</Typography>
+                    </Grid>
+                    <Grid item xs={2} sx={{textAlign: 'right'}}>
+                        <Button variant="outlined" color="success" startIcon={<Add/>}>New Project</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Card>
+                            <DataGrid
+                                columns={columns}
+                                rows={data}
+                                sx={{ height: '80vh'}}
+                            />
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
     );
 }
 

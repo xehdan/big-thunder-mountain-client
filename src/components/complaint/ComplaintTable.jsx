@@ -62,7 +62,7 @@ function ComplaintTable(props) {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            sx={{ width: '89vw', height: '80vh'}}
+            sx={{ height: '80vh'}}
         />
     );
 }

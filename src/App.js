@@ -2,7 +2,6 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar";
-import Home from "./pages/home/Home"
 import CssBaseline from '@mui/material/CssBaseline';
 import "./App.css";
 import ProjectList from "./pages/projects/ProjectList";
@@ -21,6 +20,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import CustomerCreate from "./pages/customers/CustomerCreate";
 import ComplaintList from "./pages/complaint/ComplaintList";
 import ComplaintPage from "./pages/complaint/ComplaintPage";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import TaskList from "./pages/task/TaskList";
 
 
 function App() {
@@ -57,7 +58,8 @@ function App() {
               <div className="container">
                 <Sidebar/>
                   <Routes className="mainStage">
-                      <Route path="/" element={<Home/>}/>
+                      <Route path="/" element={<DashboardPage/>}/>
+                      <Route path="/task" element={<TaskList/>}/>
                       <Route path="/projects" element={<ProjectList/>}/>
                       <Route exact path="/project/:id" element={<ProjectPage/>} />
                       <Route path="/screedchecks" element={<ScreedcheckList/>}/>
