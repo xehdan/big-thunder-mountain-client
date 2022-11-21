@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Grid, Typography} from "@mui/material";
 import BiCard from "../../components/dashboard/bi/BiCard";
 import TaskGrid from "../../components/tasks/TaskGrid";
 import UpcomingAssemblies from "../../components/assembly/UpcomingAssemblies";
+import {UserContext} from "../../context/UserContext";
 
 function DashboardPage(props) {
-    const user = 'John Doe'
     const [preview, setPreview] = useState(14)
     const biGridSize = 3
+    const user = useContext(UserContext)
 
     return (
         <Grid container sx={{marginTop: 5}}>
+            <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+                <Typography gutterBottom variant='h1' component="h1">Good Morning {user.nickname}</Typography>
+            </Grid>
             <Grid item xs={12} lg={8} spacing={2} sx={{paddingX: 3}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
@@ -45,7 +49,7 @@ function DashboardPage(props) {
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <TaskGrid taskOwner={user}/>
+                    <TaskGrid taskOwner={user.userName}/>
                 </Grid>
             </Grid>
             <Grid container spacing={2} sx={{paddingX: 3}}>

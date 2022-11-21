@@ -22,9 +22,19 @@ import ComplaintList from "./pages/complaint/ComplaintList";
 import ComplaintPage from "./pages/complaint/ComplaintPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import TaskList from "./pages/task/TaskList";
+import {UserContextProvider} from "./context/UserContext";
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 
 
 function App() {
+    Sentry.init({
+        dsn:  "https://db8399bc864a4f26a76dd60dbe4a74e6@o770040.ingest.sentry.io/4504197052694528",
+        integrations: [new BrowserTracing()],
+
+        tracesSampleRate: 1.0,
+    })
+
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
 /*
     const theme = createTheme({
@@ -52,6 +62,8 @@ function App() {
 
   return (
       <ThemeProvider theme={theme}>
+          <UserContextProvider>
+
           <CssBaseline />
           <Router>
               <Navbar/>
@@ -78,6 +90,7 @@ function App() {
               </div>
           </Router>
 
+          </UserContextProvider>
       </ThemeProvider>
   );
 }
