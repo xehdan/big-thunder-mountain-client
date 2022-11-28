@@ -79,7 +79,7 @@ function ComplaintPage(props) {
             setComplaintPosition(response1.data.complaint.ComplaintPositions)
         };
         return readComplaint
-    }, [props])
+    }, [id, props])
 
     const LinkBehavior = React.forwardRef((props, ref) => (
         <PDFDownloadLink

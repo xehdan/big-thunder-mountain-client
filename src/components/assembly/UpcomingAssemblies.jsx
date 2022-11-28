@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import http from "../../http";
 import {DataGrid} from "@mui/x-data-grid";
 import {Avatar, AvatarGroup, Box} from "@mui/material";
-import ThAvatar from "../helper/ThAvatar";
 
 function UpcomingAssemblies(props) {
     const [upcomingAssemblies, setUpcomingAssemblies] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [timespan, setTimespan] = useState(props.timespan)
 
 
@@ -25,6 +25,7 @@ function UpcomingAssemblies(props) {
     function renderEmployees(params) {
         const emp = params.row.Employees
         const avatars = []
+        // eslint-disable-next-line array-callback-return
         emp.map((emper, index) => {
             avatars.push(
                 //<ThAvatar key={emper.id + '-' + params.row.id} title={emper.firstName + ' ' + emper.lastName} initials={emper.firstName.charAt(0) + emper.lastName.charAt(0)}/>

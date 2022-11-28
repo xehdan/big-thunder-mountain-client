@@ -6,6 +6,7 @@ import UpcomingAssemblies from "../../components/assembly/UpcomingAssemblies";
 import {UserContext} from "../../context/UserContext";
 
 function DashboardPage(props) {
+    // eslint-disable-next-line no-unused-vars
     const [preview, setPreview] = useState(14)
     const biGridSize = 3
     const user = useContext(UserContext)

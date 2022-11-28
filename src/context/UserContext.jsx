@@ -1,17 +1,18 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 // create context
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
     // the value that will be given to the context
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useState({
-        fullName: 'Joseph Robinette Biden jr.',
-        firstName: 'Joseph',
-        nickname: 'Joe',
-        lastName: 'Biden',
+        fullName: 'John Francis Doe jr.',
+        firstName: 'John',
+        nickname: 'Johnny',
+        lastName: 'Doe',
         mail: 'joe.biden@whitehouse.gov',
-        username: 'joe.biden',
+        username: 'john.doe',
         phone: '012345678910'
     });
 

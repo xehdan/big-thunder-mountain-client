@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import http from "../../http";
+import {UserContext} from "../../context/UserContext";
+import moment from "moment/moment";
 
 
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', width: 40 },
     {
         field: 'task',
         headerName: 'Task',
@@ -15,11 +17,12 @@ const columns = [
     {
         field: 'dueDate',
         headerName: 'Due Date',
-        width: 100,
+        width: 130,
         editable: true,
+        valueGetter: (params) => { return moment(params.row.dueDate).fromNow() }
     },
     {
-        field: 'taskCreater',
+        field: 'taskCreator',
         headerName: 'From',
         width: 100,
         editable: true,
@@ -33,17 +36,18 @@ const columns = [
 
 
 function TaskGrid(props) {
+    const {username} = useContext(UserContext)
 
-    const user = props.taskOwner;
+    //const user = props.taskOwner;
     const [userTasks, setUserTasks] = useState([])
 
     useEffect(() => {
         const readUserTasks = async () => {
-            const response = await http.get(`api/task/owner/${user}`);
+            const response = await http.get(`api/task/owner/${username}`);
             setUserTasks(response.data.tasks);
         };
         return readUserTasks
-    }, [props])
+    }, [props, username])
 
     return (
         <Box sx={{ height: 400, width: '100%' }}>

@@ -1,0 +1,89 @@
+import React, {useContext, useEffect, useState} from 'react';
+import {Button, Card, Grid, Typography} from "@mui/material";
+import {DataGrid} from "@mui/x-data-grid";
+import moment from "moment/moment";
+import {Add} from "@mui/icons-material";
+import http from "../../http";
+import {UserContext} from "../../context/UserContext";
+import TaskDialog from "../../components/tasks/TaskDialog";
+
+function TaskList(props) {
+    const user = useContext(UserContext)
+    const [tasks, setTasks] = useState([]);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const [reload, setReload] = useState(1);
+
+
+    useEffect(() => {
+        const readTasks = async () => {
+            console.log("Fire in the house", reload)
+            const response = await http.get(`api/task/`);
+            setTasks(response.data.task)
+
+        }
+        return readTasks
+    }, [reload])
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            width: 100
+        }, {
+            field: 'dueDateIn',
+            headerName: 'Due in',
+            width: 250,
+            valueGetter: (params) => moment(params.row.dueDate).fromNow()
+        }, {
+            field: 'dueDate',
+            headerName: 'Due Date',
+            width: 250,
+            valueGetter: (params) => moment(params.row.dueDate).format('yyyy-MM-DD hh:mm')
+        },
+        {
+            field: 'taskCreator',
+            headerName: 'From',
+            width: 200
+        },
+        {
+            field: 'taskOwner',
+            headerName: 'To',
+            width: 200
+        },
+        {
+            field: 'priority',
+            headerName: 'Priority',
+            width: 100
+        }
+    ]
+
+    const rows = tasks
+
+
+    return (
+        <>
+            {/*<TaskDialog openening={openDialog} setOpen={setOpenDialog} setReload={setReload} reload={reload}/>*/}
+            <Grid container sx={{marginTop: 5}}>
+                <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+                    <Grid container>
+
+                        <Grid item xs={10}><Typography variant="h2" component="h1"
+                                                       gutterBottom>Tasks</Typography></Grid>
+                        <Grid item xs={2} sx={{textAlign: 'right'}}>
+                            <Button variant="outlined" color="success" onClick={() => setOpenDialog(true)} startIcon={<Add/>}>New
+                                Task</Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Card>
+                                <DataGrid sx={{height: '80vh'}} columns={columns} rows={rows}/>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </>
+    );
+}
+
+export default TaskList;
