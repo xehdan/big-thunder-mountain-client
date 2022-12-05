@@ -28,14 +28,14 @@ function Navbar(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
-    useEffect(() => {
+    /*useEffect(() => {
         const interval = setInterval(async () => {
 
             await readTasks()
 
         }, 10000);
         return () => clearInterval(interval);
-    })
+    })*/
 
 
     // eslint-disable-next-line no-unused-vars

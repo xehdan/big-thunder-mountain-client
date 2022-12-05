@@ -2,26 +2,30 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import http from "../../http";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
+    Accordion, AccordionDetails, AccordionSummary,
     Button,
     Card,
-    CardActions,
-    CardContent,
-    Grid,
+    CardContent, Chip,
+    Grid, Stack,
     Typography
 } from "@mui/material"
-import moment from "moment";
+import moment from "moment/moment";
 import {useNavigate} from "react-router-dom";
-import {ExpandMore} from "@mui/icons-material";
+import {Approval, CalendarMonthSharp, DoDisturb, ExpandMore, HourglassBottom, Print} from "@mui/icons-material";
+import ScreedcheckDetailRooms from "../../components/screedcheck/ScreedcheckDetailRooms";
+import ScreedcheckDetailComponents from "../../components/screedcheck/ScreedcheckDetailComponents";
+import ScreedcheckDetailResults from "../../components/screedcheck/ScreedcheckDetailResults";
+import ScreedcheckDetailCard from "../../components/screedcheck/ScreedcheckDetailCard";
+import ScreedcheckCards from "../../components/project/ScreedcheckCards";
 
 const ProjectPage = () => {
     let {id} = useParams();
-    const [project, setProject] = useState([])
-    const [customer, setCustomer] = useState([])
-    const [screedcheckHeads, setScreedcheckHeads] = useState([])
-    const [assemblies, setAssemblies] = useState([])
+    const [project, setProject] = useState({})
+    const [customerDeliveryAddress, setCustomerDeliveryAddress] = useState({})
+    const [customerInvoiceAddress, setCustomerInvoiceAddress] = useState({})
+    const [screedcheck, setScreedcheck] = useState([])
+    const [assembly, setAssembly] = useState([])
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -32,132 +36,116 @@ const ProjectPage = () => {
                 }
             });
             setProject(response.data.project)
-            setScreedcheckHeads(response.data.project.ScreedcheckHeads)
-            setAssemblies(response.data.project.AssemblyHeads)
+            setCustomerDeliveryAddress(response.data.project.customerDeliveryAddress)
+            setCustomerInvoiceAddress(response.data.project.customerInvoiceAddress)
+            setScreedcheck(response.data.project.ScreedcheckHeads)
+            setAssembly(response.data.project.AssemblyHeads)
         }
         return readProject
     }, [id])
 
-    useEffect(() => {
-        const readCustomer = async () => {
-            const response = await http.get(`/api/customer/${id}`, {
-                params: {
-                    detail: "true"
-                }
-            });
-            setCustomer(response.data.customer);
-        };
-        return readCustomer
-    }, [id])
 
     return (
-        <Grid container spacing={2} sx={{ margin: 3}}>
-            <Grid item xs={12}>
+        <Grid container spacing={2} sx={{margin: 3}}>
+            <Grid item xs={12} lg={4}>
                 <Card>
                     <CardContent>
-                        <div>
-                            {project.transactionId}
-                        </div>
-                        <div>
-                            <Typography variant="h3" component="h1">{customer.firstName} {customer.lastName}</Typography>
-                        </div>
-                        <div title={moment(project.createdAt).format('DD MMMM YYYY, hh:mm')}>
-                            Created: {moment(project.createdAt).fromNow()}
-                        </div>
+                        <Typography sx={{fontSize: 14}} color="text.secondary"
+                                    gutterBottom> {project.transactionId}</Typography>
+                        <Typography variant="h1" component="h1">Project</Typography>
+                        <Typography>Status: <Chip size="small" label='Undefined'/></Typography>
+                        <Typography>Completed: yes </Typography>
+                        <Typography>Created At: {moment(project.createdAt).format('YYYY-MM-DD hh:mm')}</Typography>
+                        <Typography>Last Update: {moment(project.updatedAt).format('YYYY-MM-DD hh:mm')}</Typography>
+                        {project.deletedAt ?
+                            <Typography>Deleted: {moment(project.deletedAt).format('YYYY-MM-DD hh:mm')}</Typography> : ''}
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item lg={6} xs={12}>
-                {screedcheckHeads.map((head, _index) => (
-                    <Card key={_index}>
-                        <CardContent>
-                            <Typography variant="h4" component="h2">
-                                Screedcheck: {head.id}
-                            </Typography>
-                            <Typography>
-                                Date of Screedcheck: {moment(head.datetime_of_screedcheck).format('DD MMMM YYYY, hh:mm')}
-                            </Typography>
-                            <Typography>
-                                Screedchecker: {head.screedchecker}
-                            </Typography>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>Details</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    {JSON.stringify(head.ScreedcheckDetail)}
-                                </AccordionDetails>
-                            </Accordion>
-
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={() => navigate(`/screedcheck/${head.id}`)} size="small">See Screedcheck</Button>
-                        </CardActions>
-                    </Card>
-                ))}
-
+            <Grid item xs={12} lg={3}>
+                <Card>
+                    <CardContent>
+                        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+                            {customerDeliveryAddress.transactionId}
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            Delivery Address
+                        </Typography>
+                        <Typography sx={{mt: 1.5}}>
+                            {customerDeliveryAddress.street} {customerDeliveryAddress.housenumber}
+                        </Typography>
+                        <Typography>
+                            {customerDeliveryAddress.zipcode} {customerDeliveryAddress.city}
+                        </Typography>
+                        <Typography>
+                            {customerDeliveryAddress.state}
+                        </Typography>
+                        <Typography>
+                            {customerDeliveryAddress.country}
+                        </Typography>
+                    </CardContent>
+                </Card>
             </Grid>
-            <Grid item lg={6} xs={12}>
-                {assemblies.map((head, _index) => (
-                    <Card key={_index}>
-                        <CardContent>
-                            <Typography variant="h4" component="h2">
-                                Assembly: {head.id}
-                            </Typography>
-                            <Typography>
-                                Date of Screedcheck: {moment(head.assembly_date).format('DD MMMM YYYY, hh:mm')}
-                            </Typography>
-                            <Typography>
-                                mechanic: {head.mechanic}
-                            </Typography>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>Floors</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    {JSON.stringify(head.AssemblyFloors)}
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>AssemblyAdditionalAssemblyTasks</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    {JSON.stringify(head.AssemblyAdditionalAssemblyTasks)}
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>AssemblyControlChecks</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    {JSON.stringify(head.AssemblyControlChecks)}
-                                </AccordionDetails>
-                            </Accordion>
+            <Grid item xs={12} lg={3}>
+                <Card>
+                    <CardContent>
+                        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+                            {customerInvoiceAddress.transactionId}
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            Invoice Address
+                        </Typography>
+                        <Typography sx={{mt: 1.5}}>
+                            {customerInvoiceAddress.street} {customerInvoiceAddress.housenumber}
+                        </Typography>
+                        <Typography>
+                            {customerInvoiceAddress.zipcode} {customerInvoiceAddress.city}
+                        </Typography>
+                        <Typography>
+                            {customerInvoiceAddress.state}
+                        </Typography>
+                        <Typography>
+                            {customerInvoiceAddress.country}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Grid>
 
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={() => navigate(`/assembly/${head.id}`)} size="small">See Assembly</Button>
-                        </CardActions>
-                    </Card>
-                ))}
+            <Grid item xs={12} lg={2}>
+                <Card>
+                    <CardContent>
+                        <Stack spacing={2} sx={{marginTop: 2, marginBottom: 2}}>
+                            <Button label="Approve" startIcon={<Approval/>} color="success"
+                                    variant="contained">Approve</Button>
+                            <Button label="Standy" startIcon={<HourglassBottom/>} color="warning"
+                                    variant="contained">Standby</Button>
+                            <Button label="Decline" startIcon={<DoDisturb/>} color="error"
+                                    variant="contained">Decline</Button>
+                        </Stack>
+                        <Stack spacing={2}>
+                            <Button startIcon={<Print/>}>Protocol</Button>
+                            <Button label="Set to review" startIcon={<CalendarMonthSharp/>}>Set Review</Button>
+                        </Stack>
+                    </CardContent>
 
+                </Card>
+            </Grid>
+
+            <Grid item xs={12}>
+                {screedcheck ? screedcheck.map((sc, index) => (
+                    <ScreedcheckCards sc={sc} index={index}/>
+                )) : <Card>
+                    <CardContent>
+                        No Screedchecks found or assigned yet to this project
+                    </CardContent>
+                </Card>}
+            </Grid>
+            <Grid item xs={12}>
+                <Card>
+                    <CardContent>
+                        <Typography>{JSON.stringify(assembly)}</Typography>
+                    </CardContent>
+                </Card>
             </Grid>
         </Grid>
 
