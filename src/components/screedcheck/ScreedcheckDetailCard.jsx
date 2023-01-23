@@ -25,14 +25,11 @@ function ScreedcheckDetailCard(props) {
     return (
         <Card>
             <CardContent>
-                <Stack direction="row" >
-                    <Tooltip title={`Created: ${moment(sc.createdAt).format('YYYY-MM-DD hh:mm')} -- Last Updated: ${moment(sc.updatedAt).format('YYYY-MM-DD hh:mm')}`}>
+                    <Tooltip title={`Created: ${moment(sc.createdAt).format('LLL')} -- Last Updated: ${moment(sc.updatedAt).format('LLL')}`}>
                         <Typography sx={{fontSize: 14}} color="text.secondary"
                                     gutterBottom> {sc.transactionId}</Typography>
 
                     </Tooltip>
-                       </Stack>
-
                 <Typography variant="h4" component="h3">Details</Typography>
                 <Stack direction="row" justifyContent="space-evenly" sx={{ padding: 4}}>
                     {sc.is_parking_space_available ?
@@ -120,19 +117,19 @@ function ScreedcheckDetailCard(props) {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Created</TableCell>
-                                <TableCell>{moment(sc.createdAt).format('YYYY-MM-DD hh:mm')}</TableCell>
+                                <TableCell>{moment(sc.createdAt).format('LLL')}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Last update</TableCell>
-                                <TableCell>{moment(sc.updatedAt).format('YYYY-MM-DD hh:mm')}</TableCell>
+                                <TableCell>{moment(sc.updatedAt).format('LLL')}</TableCell>
                             </TableRow>
                             {sc.deletedAt ? <TableRow>
                                 <TableCell>Deleted</TableCell>
-                                <TableCell>{moment(sc.deletedAt).format('YYYY-MM-DD hh:mm')}</TableCell>
+                                <TableCell>{moment(sc.deletedAt).format('LLL')}</TableCell>
                             </TableRow>: ''}
                             <TableRow>
                                 <TableCell>Preferred assembly date</TableCell>
-                                <TableCell> {moment(sc.preferred_assembly_date).format('YYYY-MM-DD ')}</TableCell>
+                                <TableCell> {moment(sc.preferred_assembly_date).format('ll ')}</TableCell>
                             </TableRow>
 
                         </TableBody>

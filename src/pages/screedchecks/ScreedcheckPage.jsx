@@ -34,7 +34,7 @@ const ScreedcheckPage = () => {
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>
-            <Grid item md={3} xs={4}>
+            <Grid item xl={3} xs={4}>
                 <Card>
                     <CardContent>
                         {JSON.stringify(screedcheck)}

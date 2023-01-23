@@ -23,17 +23,25 @@ import ComplaintPage from "./pages/complaint/ComplaintPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import TaskList from "./pages/task/TaskList";
 import {UserContextProvider} from "./context/UserContext";
-import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
+//import * as Sentry from '@sentry/react';
+//import { BrowserTracing } from '@sentry/tracing';
+import ProjectCreate from "./pages/projects/CreateProject";
+import AssemblyCreate from "./pages/assembly/CreateAssembly";
+import UploadPage from "./pages/projects/upload/UploadPage";
+//import moment from "moment";
+//import 'moment/locale/de'
 
 
 function App() {
-    Sentry.init({
+
+    //moment.locale('de')
+
+    /*Sentry.init({
         dsn:  "https://db8399bc864a4f26a76dd60dbe4a74e6@o770040.ingest.sentry.io/4504197052694528",
         integrations: [new BrowserTracing()],
 
         tracesSampleRate: 1.0,
-    })
+    })*/
 
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
 /*
@@ -74,6 +82,8 @@ function App() {
                       <Route path="/task" element={<TaskList/>}/>
                       <Route path="/projects" element={<ProjectList/>}/>
                       <Route exact path="/project/:id" element={<ProjectPage/>} />
+                      <Route path="/projectNew" element={<ProjectCreate/>} />
+                      <Route path="/projectNewUpload" element={<UploadPage/>} />
                       <Route path="/screedchecks" element={<ScreedcheckList/>}/>
                       <Route exact path="/screedcheck/:id" element={<ScreedcheckPage/>}/>
                       <Route path="/customers" element={<CustomerList/>}/>
@@ -81,6 +91,7 @@ function App() {
                       <Route exact path="/customer/:id" element={<CustomerPage/>}/>
                       <Route path="/calendar" element={<ThCalendar/>}/>
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
+                      <Route exact path="/assembly/create" element={<AssemblyCreate/>} />
                       <Route path="/assemblies" element={<AssemblyList/>}/>
                       <Route exact path="/complaint/:id" element={<ComplaintPage/>}/>
                       <Route path="/complaints" element={<ComplaintList/>}/>

@@ -5,10 +5,9 @@ import http from "../../http";
 import {Link} from "react-router-dom";
 import {Add, Edit, Visibility} from "@mui/icons-material";
 import {Button, Grid, Typography, Card, Chip, FormGroup, FormControlLabel, Switch} from "@mui/material";
-import moment from "moment/moment";
+import moment from "moment";
 import {useNavigate} from "react-router-dom";
-
-
+import NewProjectModal from "../../components/project/NewProjectModal";
 
 
 function ProjectList() {
@@ -19,6 +18,8 @@ function ProjectList() {
     const [loading, setLoading] = useState(true);
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
+
     const [columnVisibilityModel, setColumnVisibilityModel] = useState({
         deletedAt: false,
         customerGroup: false
@@ -36,7 +37,7 @@ function ProjectList() {
     }
 
     useEffect(() => {
-         return readAllProjects;
+        return readAllProjects;
     }, [deleted]);
 
     const columns = [
@@ -70,8 +71,8 @@ function ProjectList() {
             align: 'center',
             renderCell: (params) => {
                 const groupArray = params.row.Customer
-                if (groupArray.CustomerGroup){
-                    return <Chip size="small" label={groupArray.CustomerGroup.shortName} />
+                if (groupArray.CustomerGroup) {
+                    return <Chip size="small" label={groupArray.CustomerGroup.shortName}/>
                 } else {
                     return null
                 }
@@ -86,7 +87,7 @@ function ProjectList() {
                 const customerDeliveryAddress = params.row.customerDeliveryAddress
                 return customerDeliveryAddress.zipcode
             }
-        },        {
+        }, {
             field: 'assemblyCity',
             headerName: 'City',
             width: 200,
@@ -119,7 +120,8 @@ function ProjectList() {
             width: 150,
             type: 'number',
             valueGetter: (params) => {
-                const assemblyHead = params.row.AssemblyHeads
+                return 0
+                /*const assemblyHead = params.row.AssemblyHeads
                 if (assemblyHead.length > 1) {
                     let totalSpace = 0
                     for (const assemblyHeadKey in assemblyHead) {
@@ -128,7 +130,7 @@ function ProjectList() {
                     return `${totalSpace}*`
                 } else {
                     return assemblyHead[0].space
-                }
+                }*/
             }
         },
         {
@@ -136,7 +138,7 @@ function ProjectList() {
             headerName: 'Status',
             width: 250,
             align: 'center',
-            renderCell: (params) => <Chip size="small" label="Undefined" />
+            renderCell: (params) => <Chip size="small" label="Undefined"/>
         },
         {
             field: 'screedcheck',
@@ -182,20 +184,26 @@ function ProjectList() {
             headerName: 'Completed',
             width: 85,
             type: 'boolean',
-            valueGetter: (params) => {return false}
+            valueGetter: (params) => {
+                return false
+            }
         },
         {
             field: 'createdAt',
             headerName: 'Created',
             width: 140,
             type: 'datetime',
-            valueGetter: (params) => {return moment(params.row.createdAt).format('YYYY-MM-DD HH:MM')}
+            valueGetter: (params) => {
+                return moment(params.row.createdAt).format('LLL')
+            }
         }, {
             field: 'updatedAt',
             headerName: 'Last Updated',
             width: 140,
             type: 'datetime',
-            valueGetter: (params) => {return moment(params.row.updatedAt).format('YYYY-MM-DD HH:MM')}
+            valueGetter: (params) => {
+                return moment(params.row.updatedAt).format('LLL')
+            }
         },
         {
             field: 'deletedAt',
@@ -207,7 +215,7 @@ function ProjectList() {
                 if (date == null) {
                     return ''
                 } else {
-                    return moment(params.row.deletedAt).format('YYYY-MM-DD HH:MM')
+                    return moment(params.row.deletedAt).format('LLL')
                 }
             }
         },
@@ -217,14 +225,14 @@ function ProjectList() {
             width: 80,
             align: 'right',
             getActions: (params) => [
-                <Link  to={`/project/${params.id}`}>
+                <Link to={`/project/${params.id}`}>
                     <GridActionsCellItem
-                        icon={<Visibility />}
+                        icon={<Visibility/>}
                         label="View"
                         //onClick={goToCustomerPage(params.id)}
                     /></Link>,
                 <GridActionsCellItem
-                    icon={<Edit />}
+                    icon={<Edit/>}
                     label="Edit"
                     //onClick={toggleAdmin(params.id)}
                     showInMenu
@@ -233,13 +241,15 @@ function ProjectList() {
         },
     ];
 
-/*    const columnGroupingModel = [
-        {
-            groupId: 'Assembly',
-            description: '',
-            children: [{ field: 'assemblyZipcode'}, { field: 'assemblyCity'}, { field: 'assemblyState'}, { field: 'assemblyCountry'}]
-        }
-    ]*/
+
+    const handleClickOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleClose = () => {
+        setOpenModal(false);
+    };
+
 
     function handleFilter() {
         setDeleted(!deleted)
@@ -247,49 +257,53 @@ function ProjectList() {
     }
 
     return (
-        <Grid container sx={{marginTop: 5}}>
-            <Grid item xs={12} spacing={2} sx={{ paddingX: 3}}>
-                <Grid container>
-                    <Grid item xs={10}>
-                        <Typography variant="h2" component="h1" gutterBottom>Projects</Typography>
-                    </Grid>
-                    <Grid item xs={2} sx={{textAlign: 'right'}}>
-                        <Button variant="outlined" color="success" startIcon={<Add/>}>New Project</Button>
-                    </Grid>
-                    <Grid item xs={12} sm={12} gutterBottom>
-                        <FormGroup>
-                            <FormControlLabel control={<Switch
-                                checked={deleted}
-                                onChange={handleFilter}
-                                inputProps={{'aria-label': 'Show deleted'}}
-                            />} label={"Show deleted"}/>
-                        </FormGroup>
+        <>
+            <NewProjectModal close={handleClose} open={openModal}/>
+            <Grid container sx={{marginTop: 5}}>
+                <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+                    <Grid container>
+                        <Grid item xs={10}>
+                            <Typography variant="h2" component="h1" gutterBottom>Projects</Typography>
+                        </Grid>
+                        <Grid item xs={2} sx={{textAlign: 'right'}}>
+                            <Button variant="outlined" color="success" startIcon={<Add/>} onClick={handleClickOpen}>New
+                                Project</Button>
+                        </Grid>
+                        <Grid item xs={12} xl={12} gutterBottom>
+                            <FormGroup>
+                                <FormControlLabel control={<Switch
+                                    checked={deleted}
+                                    onChange={handleFilter}
+                                    inputProps={{'aria-label': 'Show deleted'}}
+                                />} label={"Show deleted"}/>
+                            </FormGroup>
 
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Card>
-                            <DataGrid
-                                columnVisibilityModel={columnVisibilityModel}
-                                onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
-                                componentsProps={{
-                                    toolbar: {
-                                        showQuickFilter: true,
-                                        quickFilterProps: { debounceMs: 500 },
-                                    },
-                                }}
-                                components={{
-                                    Toolbar: GridToolbar,
-                                }}
-                                columns={columns}
-                                rows={data}
-                                sx={{ height: '80vh'}}
-                                onRowDoubleClick={(params) => navigate(`/project/${params.row.id}`) }
-                            />
-                        </Card>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Card>
+                                <DataGrid
+                                    columnVisibilityModel={columnVisibilityModel}
+                                    onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
+                                    componentsProps={{
+                                        toolbar: {
+                                            showQuickFilter: true,
+                                            quickFilterProps: {debounceMs: 500},
+                                        },
+                                    }}
+                                    components={{
+                                        Toolbar: GridToolbar,
+                                    }}
+                                    columns={columns}
+                                    rows={data}
+                                    sx={{height: '80vh'}}
+                                    onRowDoubleClick={(params) => navigate(`/project/${params.row.id}`)}
+                                />
+                            </Card>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </>
 
     );
 }

@@ -34,7 +34,7 @@ const ProjectCard = (props) => {
 
                     </Grid>
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary" title={moment(props.project.createdAt).format('DD MMMM YYYY, hh:mm')}>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary" title={moment(props.project.createdAt).format('LLL')}>
                     Created {moment(props.project.createdAt).fromNow()}
                 </Typography>
             </CardContent>

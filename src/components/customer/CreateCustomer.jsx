@@ -72,19 +72,19 @@ function CreateCustomer(props) {
                             <Typography variant="h4" component="h2" gutterBottom>2. Delivery</Typography>
                             <Stack spacing={2}>
                                 <Grid container>
-                                    <Grid item xs={12} md={9}>
+                                    <Grid item xs={12} xl={9}>
                                         <TextField fullWidth variant="outlined" required label="Street"  />
                                     </Grid>
-                                    <Grid item xs={12} md={3}>
+                                    <Grid item xs={12} xl={3}>
                                         <TextField fullWidth variant="outlined" required label="Housenumber"/>
                                     </Grid>
                                 </Grid>
                                 <TextField variant="outlined" label="Floor" />
                                 <Grid container>
-                                    <Grid item xs={12} md={3}>
+                                    <Grid item xs={12} xl={3}>
                                         <TextField fullWidth variant="outlined" required label="Zipcode"  />
                                     </Grid>
-                                    <Grid item xs={12} md={9}>
+                                    <Grid item xs={12} xl={9}>
                                         <TextField fullWidth variant="outlined" required label="City"/>
                                     </Grid>
                                 </Grid>
@@ -100,19 +100,19 @@ function CreateCustomer(props) {
                             <Typography variant="h4" component="h2" gutterBottom>3. Invoice</Typography>
                             <Stack spacing={2}>
                                 <Grid container>
-                                    <Grid item xs={12} md={9}>
+                                    <Grid item xs={12} xl={9}>
                                         <TextField fullWidth variant="outlined" required label="Street"  />
                                     </Grid>
-                                    <Grid item xs={12} md={3}>
+                                    <Grid item xs={12} xl={3}>
                                         <TextField fullWidth variant="outlined" required label="Housenumber"/>
                                     </Grid>
                                 </Grid>
                                 <TextField variant="outlined" label="Floor" />
                                 <Grid container>
-                                    <Grid item xs={12} md={3}>
+                                    <Grid item xs={12} xl={3}>
                                         <TextField fullWidth variant="outlined" required label="Zipcode"  />
                                     </Grid>
-                                    <Grid item xs={12} md={9}>
+                                    <Grid item xs={12} xl={9}>
                                         <TextField fullWidth variant="outlined" required label="City"/>
                                     </Grid>
                                 </Grid>

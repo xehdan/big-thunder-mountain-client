@@ -95,7 +95,7 @@ function CustomerPage() {
 
     return (
         <Grid container spacing={2} sx={{ margin: 3}}>
-            <Grid item md={3} xs={4}>
+            <Grid item xl={3} xs={4}>
                 <Card>
                     <CardContent>
                         <div style={{ padding: '3rem', textAlign: 'center' }}>
@@ -134,7 +134,7 @@ function CustomerPage() {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item md={9} xs={6}>
+            <Grid item xl={9} xs={6}>
                 <Card>
                     <Tabs value={tabValue} onChange={handleTabChange} aria-label="customers tabs">
                         <Tab label="Overview" />
@@ -164,7 +164,7 @@ function CustomerPage() {
 
                 </Card>
             </Grid>
-            <Grid item md={3} xs={12}>
+            <Grid item xl={3} xs={12}>
                 {projects.map((project, _index) => (
                     <ProjectCard key={_index} project={project} />
                 ))}

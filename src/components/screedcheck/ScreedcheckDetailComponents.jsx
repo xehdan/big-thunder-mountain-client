@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Card, CardContent, Typography} from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import PropTypes from "prop-types";
-import moment from "moment/moment";
+import moment from "moment";
 
 function ScreedcheckDetailComponents(props) {
     const [columnVisibilityModel, setColumnVisibilityModel] = useState({});
@@ -41,7 +41,7 @@ function ScreedcheckDetailComponents(props) {
             headerName: 'Created',
             width: 200,
             valueGetter: (params) => {
-                return moment(params.row.createdAt).format('YYYY-MM-DD hh:ss')
+                return moment(params.row.createdAt).format('LLL')
             }
         },
         {
@@ -49,7 +49,7 @@ function ScreedcheckDetailComponents(props) {
             headerName: 'Last Updated',
             width: 200,
             valueGetter: (params) => {
-                return moment(params.row.updatedAt).format('YYYY-MM-DD hh:ss')
+                return moment(params.row.updatedAt).format('LLL')
             }
         },
         {
@@ -58,7 +58,7 @@ function ScreedcheckDetailComponents(props) {
             width: 200,
             valueGetter: (params) => {
                 if (params.row.deletedAt != null) {
-                    return moment(params.row.deletedAt).format('YYYY-MM-DD hh:ss')
+                    return moment(params.row.deletedAt).format('LLL')
                 } else {
                     return ''
                 }

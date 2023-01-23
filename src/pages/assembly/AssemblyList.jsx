@@ -4,7 +4,7 @@ import {DataGrid, GridActionsCellItem, GridToolbar} from "@mui/x-data-grid";
 import http from "../../http";
 import {Add, Edit, Visibility} from "@mui/icons-material";
 import {Button, Card, Grid, Typography} from "@mui/material";
-import moment from "moment/moment";
+import moment from "moment";
 
 function AssemblyList() {
     const [assemblies, setAssemblies] = useState([]);
@@ -46,7 +46,7 @@ function AssemblyList() {
             headerName: 'Assembly Date',
             width: 200,
             valueGetter: params => {
-                return moment(params.row.assembly_date).format('YYYY-MM-DD')
+                return moment(params.row.assembly_date).format('LL')
             }
         },
         {

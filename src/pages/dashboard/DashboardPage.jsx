@@ -16,34 +16,34 @@ function DashboardPage(props) {
             <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
                 <Typography gutterBottom variant='h1' component="h1">Good Morning {user.nickname}</Typography>
             </Grid>
-            <Grid item xs={12} lg={8} spacing={2} sx={{paddingX: 3}}>
+            <Grid item xs={12} xl={8} spacing={2} sx={{paddingX: 3}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant="h2" component="h1">
                             Analysis this month
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={biGridSize}>
+                    <Grid item xs={12} xl={biGridSize}>
                         <BiCard title="Projects" to="project" previousMonthTotal={29} thisMonth={22} totalMonth={25}/>
                     </Grid>
-                    <Grid item xs={12} sm={biGridSize}>
+                    <Grid item xs={12} xl={biGridSize}>
                         <BiCard title="Screedchecks" to="screedchecks" previousMonthTotal={91} thisMonth={22}
                                 totalMonth={80}/>
                     </Grid>
-                    <Grid item xs={12} sm={biGridSize}>
+                    <Grid item xs={12} xl={biGridSize}>
                         <BiCard title="Assemblies" to="assemblies" previousMonthTotal={20} thisMonth={12}
                                 totalMonth={25}/>
                     </Grid>
-                    <Grid item xs={12} sm={biGridSize}>
+                    <Grid item xs={12} xl={biGridSize}>
                         <BiCard title="Squaremeters" unit="sqm" previousMonthTotal={997} thisMonth={800}
                                 totalMonth={1130}/>
                     </Grid>
-                    <Grid item xs={12} sm={biGridSize}>
+                    <Grid item xs={12} xl={biGridSize}>
                         <BiCard title="Customers" to="customers" previousMonthTotal={8} thisMonth={15} totalMonth={15}/>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item xs={12} lg={4} spacing={2} sx={{paddingX: 3}}>
+            <Grid item xs={12} xl={4} spacing={2} sx={{paddingX: 3}}>
                 <Grid item xs={12}>
                     <Typography variant="h2" component="h1">
                         My Tasks

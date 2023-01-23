@@ -104,7 +104,7 @@ function ComplaintPage(props) {
 
     return (
         <Grid container spacing={2} sx={{margin: 3}}>
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} xl={4}>
                 <Card>
                     <CardContent>
                         <h1>Complaint ID: {id}</h1>
@@ -116,7 +116,7 @@ function ComplaintPage(props) {
                          </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={12} lg={3}>
+            <Grid item xs={12} xl={3}>
                 <Card>
                     <CardContent>
                         <h2>Address</h2>
@@ -126,7 +126,7 @@ function ComplaintPage(props) {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={12} lg={3}>
+            <Grid item xs={12} xl={3}>
                 <Card>
                     <CardContent>
                         <h2>Project ID: {complaint.projectId}</h2>
@@ -138,7 +138,7 @@ function ComplaintPage(props) {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={12} lg={2}>
+            <Grid item xs={12} xl={2}>
                 <Card>
                     <CardContent>
                     <Stack spacing={2} sx={{ marginTop: 2, marginBottom: 2}}>

@@ -62,14 +62,14 @@ function BookingDashboard() {
             <Grid item xs={12}>
                 <Typography variant="h2" component="h1" >Booking</Typography>
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} xl={5}>
                 <Card>
                     <CardMedia>
                         {loaded ? <StandardMap chosenFlyToCenter={flyToCenter} showHQ={true} height={'470px'} mapCenter={mapCenter} markers={markers} /> : <Card style={{ minHeight: '470px', height: '100%'}}><CircularProgress /></Card>}
                     </CardMedia>
                 </Card>
             </Grid>
-            <Grid item xs={12} sm={7} >
+            <Grid item xs={12} xl={7} >
                 <Grid container justifyContent="space-between" alignItems="center">
                     <Grid item xs={10}><Typography variant="h3" gutterBottom>Request List</Typography></Grid>
                     <Grid item xs={2} sx={{ textAlign: 'right' }}><Button variant="outlined" color="success" startIcon={<Add/>}>New Request</Button></Grid>

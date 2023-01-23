@@ -54,7 +54,7 @@ function ScreedcheckDetailRooms(props) {
             headerName: 'Created',
             width: 200,
             valueGetter: (params) => {
-                return moment(params.row.createdAt).format('YYYY-MM-DD hh:ss')
+                return moment(params.row.createdAt).format('LLL')
             }
         },
         {
@@ -62,7 +62,7 @@ function ScreedcheckDetailRooms(props) {
             headerName: 'Last Updated',
             width: 200,
             valueGetter: (params) => {
-                return moment(params.row.updatedAt).format('YYYY-MM-DD hh:ss')
+                return moment(params.row.updatedAt).format('LLL')
             }
         },
         {
@@ -71,7 +71,7 @@ function ScreedcheckDetailRooms(props) {
             width: 200,
             valueGetter: (params) => {
                 if (params.row.deletedAt != null) {
-                    return moment(params.row.deletedAt).format('YYYY-MM-DD hh:ss')
+                    return moment(params.row.deletedAt).format('LLL')
                 } else {
                     return ''
                 }

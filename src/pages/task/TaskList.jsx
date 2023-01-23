@@ -11,7 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {DataGrid, GridActionsCellItem, GridToolbar} from "@mui/x-data-grid";
-import moment from "moment/moment";
+import moment from "moment";
 import {Add, AssignmentTurnedIn, Delete, PriorityHigh, Edit} from "@mui/icons-material";
 import http from "../../http";
 import {UserContext} from "../../context/UserContext";
@@ -156,7 +156,7 @@ function TaskList(props) {
             field: 'dueDate',
             headerName: 'Due Date',
             width: 100,
-            valueGetter: (params) => moment(params.row.dueDate).format('yyyy-MM-DD')
+            valueGetter: (params) => moment(params.row.dueDate).format('ll')
         },
         {
             field: 'completed',
@@ -237,14 +237,14 @@ function TaskList(props) {
                 <Grid item xs={12} sx={{paddingX: 3}}>
                     <Grid container spacing={2}>
 
-                        <Grid item xs={12} sm={10}><Typography variant="h2"
+                        <Grid item xs={12} xl={10}><Typography variant="h2"
                                                                component="h1">{filter ? 'My Tasks' : 'All Tasks'}</Typography></Grid>
-                        <Grid item xs={12} sm={2} sx={{textAlign: 'right'}}>
+                        <Grid item xs={12} xl={2} sx={{textAlign: 'right'}}>
                             <Button variant="outlined" color="success" onClick={handleClickOpen} startIcon={<Add/>}>New
                                 Task
                             </Button>
                         </Grid>
-                        <Grid item xs={12} sm={12} gutterBottom>
+                        <Grid item xs={12} xl={12} gutterBottom>
                             <FormGroup>
                                 <FormControlLabel control={<Switch
                                     checked={filter}
@@ -254,7 +254,7 @@ function TaskList(props) {
                             </FormGroup>
 
                         </Grid>
-                        <Grid item xs={12} sm={selectedTask ? 8 : 12}>
+                        <Grid item xs={12} xl={selectedTask ? 8 : 12}>
                             <Card>
                                 <DataGrid
                                     components={{
@@ -277,7 +277,7 @@ function TaskList(props) {
                         </Grid>
                         {selectedTask ?
                             <>
-                                <Grid item xs={12} sm={4}>
+                                <Grid item xs={12} xl={4}>
                                     <Card>
 
                                         {selectedTask ? <>
@@ -367,9 +367,9 @@ function TaskList(props) {
                                                 {selectedTask.task}
                                             </Typography>
                                             <Typography variant="body2">
-                                                Created: {moment(selectedTask.createdAt).format('DD.MM.YYYY hh:mm:ss')}
+                                                Created: {moment(selectedTask.createdAt).format('LLL')}
                                                 <br/>
-                                                Updated: {moment(selectedTask.updatedAt).format('DD.MM.YYYY hh:mm:ss')}
+                                                Updated: {moment(selectedTask.updatedAt).format('LLL')}
                                             </Typography>
                                         </CardContent>}
                                         {updateMode ?

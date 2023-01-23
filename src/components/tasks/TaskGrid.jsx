@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import http from "../../http";
 import {UserContext} from "../../context/UserContext";
-import moment from "moment/moment";
+import moment from "moment";
 
 
 

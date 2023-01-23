@@ -24,7 +24,7 @@ function RequestList(props) {
             type: 'date',
             width: 110,
             valueGetter: params => {
-                return moment(params.row.arrivalDate).add(params.row.nightsToStay, 'd').format('D.M.yyyy')
+                return moment(params.row.arrivalDate).add(params.row.nightsToStay, 'd').format('LLL')
             }
         },
         {

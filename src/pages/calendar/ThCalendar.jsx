@@ -71,8 +71,8 @@ const ThCalendar = () => {
                 }
 
                 newAssemblies.push({
-                    start: moment(value.assembly_date).format('YYYY-MM-DD'),
-                    end: end.format('YYYY-MM-DD') || '',
+                    start: moment(value.assembly_date).format('ll'),
+                    end: end.format('ll') || '',
                     title: `${name} // P${value.projectId} // L${project.data.deliveryAddress.zipcode} ${project.data.deliveryAddress.city} `,
                     color: '#ccffcc',
                     projectId: value.projectId,

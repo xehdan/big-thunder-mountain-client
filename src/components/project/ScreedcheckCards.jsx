@@ -1,5 +1,15 @@
-import React from 'react';
-import {Accordion, AccordionDetails, AccordionSummary, Card, CardContent, Grid, Stack, Typography} from "@mui/material";
+import React, {useState} from 'react';
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Card,
+    CardContent,
+    Grid,
+    Stack,
+    Tooltip,
+    Typography
+} from "@mui/material";
 import moment from "moment";
 import ScreedcheckDetailCard from "../screedcheck/ScreedcheckDetailCard";
 import {ExpandMore} from "@mui/icons-material";
@@ -16,33 +26,36 @@ function ScreedcheckCards(props) {
         <Card key={index}>
             <CardContent>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} xl={3}>
                         <Stack spacing={2}>
                             <Card>
                                 <CardContent>
-                                    <Typography sx={{fontSize: 14}} color="text.secondary"
-                                                gutterBottom> {sc.transactionId}</Typography>
-                                    <Typography variant="h2" component="h2">{index+1}. Screedcheck</Typography>
+                                    <Tooltip title={`Created: ${moment(sc.createdAt).format('LLL')} -- Last Updated: ${moment(sc.updatedAt).format('LLL')}`}>
+                                        <Typography sx={{fontSize: 14}} color="text.secondary"
+                                                    gutterBottom> {sc.transactionId}</Typography>
+
+                                    </Tooltip>
+                                    <Typography variant="h3" component="h2">{index+1}. Screedcheck</Typography>
                                     <Typography>By: {sc.screedchecker}</Typography>
-                                    <Typography>Date: {moment(sc.datetime_of_screedcheck).format('YYYY-MM-DD hh:mm')}</Typography>
-                                    <Typography>CreatedAt: {moment(sc.createdAt).format('YYYY-MM-DD hh:mm')}</Typography>
-                                    <Typography>Last
-                                        Updated: {moment(sc.updatedAt).format('YYYY-MM-DD hh:mm')}</Typography>
+                                    <Typography>Date: {moment(sc.datetime_of_screedcheck).format('LLL')}</Typography>
                                     {sc.deletedAt ?
-                                        <Typography>Deleted{moment(sc.deletedAt).format('YYYY-MM-DD hh:mm')}</Typography> : ''}
+                                        <Typography>Deleted{moment(sc.deletedAt).format('LLL')}</Typography> : ''}
                                 </CardContent>
                             </Card>
-                            {sc.ScreedcheckDetail ? <ScreedcheckDetailCard screedcheckDetail={sc.ScreedcheckDetail}/> : <Card><CardContent><Typography variant="h3" component="h1">Screedcheck not completed or transmitted yet</Typography></CardContent></Card>}
+                            {sc.ScreedcheckDetail ? <ScreedcheckDetailCard screedcheckDetail={sc.ScreedcheckDetail}/> : null}
                         </Stack>
                     </Grid>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={12} xl={9}>
                         {sc.ScreedcheckDetail ? <>
                             <Accordion>
                                 <AccordionSummary
                                     expandIcon={<ExpandMore/>}
                                     aria-controls="Panel ScreedcheckDetail Rooms"
                                     id="panel-screedcheckDetail-rooms">
-                                    <Typography variant="h4" component="h4">Rooms</Typography>
+                                    <Stack direction="row" spacing={3}>
+                                        <Typography variant="h4" component="h4" >Rooms</Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}>{sc.ScreedcheckDetail.ScreedcheckDetailRooms.length} {sc.ScreedcheckDetail.ScreedcheckDetailRooms.length === 1 ? 'Room' : 'Rooms'}</Typography>
+                                    </Stack>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ScreedcheckDetailRooms rows={sc.ScreedcheckDetail.ScreedcheckDetailRooms}
@@ -54,7 +67,10 @@ function ScreedcheckCards(props) {
                                     expandIcon={<ExpandMore/>}
                                     aria-controls="Panel ScreedcheckDetail Components"
                                     id="panel-screedcheckDetail-components">
-                                    <Typography variant="h4" component="h4">Components</Typography>
+                                    <Stack direction="row" spacing={3}>
+                                        <Typography variant="h4" component="h4">Components</Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}>{sc.ScreedcheckDetail.ScreedcheckDetailComponents.length} {sc.ScreedcheckDetail.ScreedcheckDetailComponents.length === 1 ? 'Component' : 'Components'}</Typography>
+                                    </Stack>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ScreedcheckDetailComponents rows={sc.ScreedcheckDetail.ScreedcheckDetailComponents}
@@ -66,14 +82,17 @@ function ScreedcheckCards(props) {
                                     expandIcon={<ExpandMore/>}
                                     aria-controls="Panel ScreedcheckDetail Results"
                                     id="panel-screedcheckDetail-results">
-                                    <Typography variant="h4" component="h4">Results</Typography>
+                                    <Stack direction="row" spacing={3}>
+                                        <Typography variant="h4" component="h4">Results</Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}>{sc.ScreedcheckDetail.ScreedcheckResults.length} {sc.ScreedcheckDetail.ScreedcheckResults.length === 1 ? 'Result': 'Results'}</Typography>
+                                    </Stack>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ScreedcheckDetailResults rows={sc.ScreedcheckDetail.ScreedcheckResults}
                                                               pageSize={5}/>
                                 </AccordionDetails>
                             </Accordion>
-                        </> : <Card><CardContent><Typography variant="h3" component="h1">Screedcheck not completed or transmitted yet</Typography></CardContent></Card> }
+                        </> : <Card><CardContent><Typography variant="body">Screedcheck not completed or transmitted yet</Typography></CardContent></Card> }
                     </Grid>
                 </Grid>
             </CardContent>
