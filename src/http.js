@@ -1,8 +1,11 @@
 import axios from "axios";
 
+
+const PORT = process.env.PORT || 3001;
+const HOST = process.env.REACT_APP_HOST || 'localhost';
+
 const client = axios.create({
-    baseURL: "http://localhost:3001",
-    //baseURL: "http://192.168.51.118:3001",
+    baseURL: `http://${HOST}:${PORT}`,
     headers: {
         "Content-type": "application/json"
     }

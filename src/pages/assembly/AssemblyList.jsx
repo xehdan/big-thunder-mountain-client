@@ -111,7 +111,7 @@ function AssemblyList() {
 
     return (
         <Grid container sx={{marginTop: 5}}>
-            <Grid item xs={12} spacing={2} sx={{paddingX: 3}}>
+            <Grid item xs={12} sx={{paddingX: 3}}>
                 <Grid container>
                     <Grid item xs={10}>
                         <Typography variant="h2" component="h1" gutterBottom>Assemblies</Typography>
@@ -127,7 +127,7 @@ function AssemblyList() {
                                 autoPageSize
                                 pageSize={20}
                                 rowsPerPageOptions={[20, 100, 500]}
-                                checkboxSelection={selectedAssemblies}
+                                /*checkboxSelection={selectedAssemblies}*/
                                 disableDensitySelector
                                 slots={{Toolbar: GridToolbar}}
                                 sx={{height: '80vh'}}

@@ -11,10 +11,7 @@ import {
 } from "@mui/material";
 import PropTypes from 'prop-types';
 import {DatePicker} from "@mui/x-date-pickers";
-import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
-import 'moment/dist/locale/de'
 import {UserContext} from "../../context/UserContext";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import http from "../../http";
 
 function TaskDialog2(props) {
@@ -88,7 +85,6 @@ function TaskDialog2(props) {
                 <DialogContentText>
                     You can set tasks for yourself or others
                 </DialogContentText>
-                <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'de'}>
                 <TextField
                     margin="dense"
                     id="taskCreator"
@@ -148,7 +144,6 @@ function TaskDialog2(props) {
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
                 />
-                </LocalizationProvider>
 
             </DialogContent>
             <DialogActions>

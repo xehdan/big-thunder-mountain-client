@@ -41,7 +41,6 @@ function AssemblyRooms(props) {
         }, {
             field: 'createdAt',
             headerName: 'Created',
-            type: 'date',
             width: 195,
             valueGetter: params => {
                 return moment(params.row.createdAt).format('LLL')
@@ -49,7 +48,6 @@ function AssemblyRooms(props) {
         }, {
             field: 'updatedAt',
             headerName: 'Last Update',
-            type: 'date',
             width: 195,
             valueGetter: params => {
                 return moment(params.row.updatedAt).format('LLL')
@@ -57,7 +55,6 @@ function AssemblyRooms(props) {
         }, {
             field: 'deletedAt',
             headerName: 'Deleted',
-            type: 'date',
             width: 195,
             valueGetter: (params) => {
                 if (params.row.deletedAt != null) {

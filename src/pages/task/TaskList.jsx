@@ -18,9 +18,6 @@ import {UserContext} from "../../context/UserContext";
 import TaskDialog2 from "../../components/tasks/TaskDialog2";
 import TaskConfirmDialog from "../../components/tasks/TaskConfirmDialog";
 import {DatePicker} from "@mui/x-date-pickers";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
-import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
-import 'moment/dist/locale/de'
 
 
 
@@ -282,7 +279,6 @@ function TaskList(props) {
 
                                         {selectedTask ? <>
                                         {updateMode ? <CardContent>
-                                            <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'de'}>
                                                 <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                                                     {selectedTask.transactionId}
                                                 </Typography>
@@ -351,7 +347,6 @@ function TaskList(props) {
                                                             task: newValue.target.value
                                                         }))}
                                                 />
-                                            </LocalizationProvider>
                                         </CardContent> : <CardContent>
                                             <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                                                 {selectedTask.transactionId}

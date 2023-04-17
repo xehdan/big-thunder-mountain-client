@@ -192,7 +192,6 @@ function ProjectList() {
             field: 'createdAt',
             headerName: 'Created',
             width: 140,
-            type: 'datetime',
             valueGetter: (params) => {
                 return moment(params.row.createdAt).format('LLL')
             }
@@ -200,7 +199,6 @@ function ProjectList() {
             field: 'updatedAt',
             headerName: 'Last Updated',
             width: 140,
-            type: 'datetime',
             valueGetter: (params) => {
                 return moment(params.row.updatedAt).format('LLL')
             }
@@ -209,7 +207,6 @@ function ProjectList() {
             field: 'deletedAt',
             headerName: 'Deleted',
             width: 140,
-            type: 'datetime',
             valueGetter: (params) => {
                 const date = params.row.deletedAt
                 if (date == null) {

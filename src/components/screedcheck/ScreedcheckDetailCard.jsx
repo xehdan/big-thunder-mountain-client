@@ -23,7 +23,7 @@ function ScreedcheckDetailCard(props) {
     const sc = props.screedcheckDetail
 
     return (
-        <Card>
+        sc ? <Card>
             <CardContent>
                     <Tooltip title={`Created: ${moment(sc.createdAt).format('LLL')} -- Last Updated: ${moment(sc.updatedAt).format('LLL')}`}>
                         <Typography sx={{fontSize: 14}} color="text.secondary"
@@ -140,7 +140,7 @@ function ScreedcheckDetailCard(props) {
                 {sc.notes ? <Typography variant="body2">{sc.notes}</Typography> : <Typography variant="subtitle1">No notes saved</Typography>}
 
             </CardContent>
-        </Card>
+        </Card> : null
     );
 }
 

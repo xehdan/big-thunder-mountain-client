@@ -6,6 +6,7 @@
 .pnp.js
 .npmrc
 
+
 # testing
 /coverage
 
@@ -14,6 +15,7 @@
 
 /public/system_logos
 /public/font
+/src/assets/*.ai
 
 # misc
 .DS_Store

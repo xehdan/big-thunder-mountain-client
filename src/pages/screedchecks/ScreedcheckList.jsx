@@ -106,7 +106,8 @@ const ScreedcheckList = () => {
         {
             field: 'screedchecker',
             headerName: 'Screedchecker',
-            width: 150
+            width: 150,
+            valueGetter: (params) => params.row.screedcheckerId != null ? params.row.Employee.firstName + ' ' + params.row.Employee.lastName : ''
         },
         {
             field: 'actions',

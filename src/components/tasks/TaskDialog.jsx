@@ -11,10 +11,7 @@ import {
 } from "@mui/material";
 import {UserContext} from "../../context/UserContext";
 import http from "../../http";
-import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DatePicker} from "@mui/x-date-pickers";
-import 'moment/dist/locale/de'
 
 function TaskDialog(props) {
     const user = useContext(UserContext)
@@ -86,14 +83,12 @@ function TaskDialog(props) {
 
     return (
         <>
-            <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'de'}>
                 <Dialog open={props.openening} onClose={handleClose} onKeyUp={(e) => setEditable(false)} onKeyDown={(e) => ( e.key === "c" ? setEditable(true) : null )}>
                     <DialogTitle>New Task</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             You can set tasks for yourself or others
                         </DialogContentText>
-                        {/*<LocalizationProvider dateAdapter={AdapterMoment}>*/}
                         <TextField
                             margin="dense"
                             id="taskCreator"
@@ -153,7 +148,6 @@ function TaskDialog(props) {
                             value={priority}
                             onChange={(e) => setPriority(e.target.value)}
                         />
-                        {/*</LocalizationProvider>*/}
 
                     </DialogContent>
                     <DialogActions>
@@ -161,7 +155,6 @@ function TaskDialog(props) {
                         <Button onClick={storeTask}>Save Task</Button>
                     </DialogActions>
                 </Dialog>
-            </LocalizationProvider>
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleClose}
                       anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity={snackbarColor} sx={{width: '100%'}}>

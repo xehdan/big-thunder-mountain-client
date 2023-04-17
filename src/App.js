@@ -9,7 +9,7 @@ import CustomerList from "./pages/customers/CustomerList";
 import CustomerPage from "./pages/customers/CustomerPage";
 import ScreedcheckList from "./pages/screedchecks/ScreedcheckList";
 import ProjectPage from "./pages/projects/ProjectPage";
-import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage";
+import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage.jsx";
 import ThCalendar from "./pages/calendar/ThCalendar";
 import AssemblyPage from "./pages/assembly/AssemblyPage";
 import AssemblyList from "./pages/assembly/AssemblyList";
@@ -28,13 +28,17 @@ import {UserContextProvider} from "./context/UserContext";
 import ProjectCreate from "./pages/projects/CreateProject";
 import AssemblyCreate from "./pages/assembly/CreateAssembly";
 import UploadPage from "./pages/projects/upload/UploadPage";
-//import moment from "moment";
-//import 'moment/locale/de'
+import moment from "moment";
+import 'moment/locale/de'
+
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
+import ScreedcheckBulkConfirm from "./components/screedcheck/ScreedcheckBulkConfirm";
 
 
 function App() {
 
-    //moment.locale('de')
+    moment.locale('de')
 
     /*Sentry.init({
         dsn:  "https://db8399bc864a4f26a76dd60dbe4a74e6@o770040.ingest.sentry.io/4504197052694528",
@@ -70,9 +74,11 @@ function App() {
 
   return (
       <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'de'}>
           <UserContextProvider>
 
           <CssBaseline />
+
           <Router>
               <Navbar/>
               <div className="container">
@@ -86,6 +92,7 @@ function App() {
                       <Route path="/projectNewUpload" element={<UploadPage/>} />
                       <Route path="/screedchecks" element={<ScreedcheckList/>}/>
                       <Route exact path="/screedcheck/:id" element={<ScreedcheckPage/>}/>
+                      <Route exact path="/screedcheck/bulk" element={<ScreedcheckBulkConfirm/>} />
                       <Route path="/customers" element={<CustomerList/>}/>
                       <Route path="/customer/create" element={<CustomerCreate/>}/>
                       <Route exact path="/customer/:id" element={<CustomerPage/>}/>
@@ -102,6 +109,7 @@ function App() {
           </Router>
 
           </UserContextProvider>
+          </LocalizationProvider>
       </ThemeProvider>
   );
 }

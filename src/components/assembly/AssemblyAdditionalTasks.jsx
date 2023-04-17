@@ -40,25 +40,21 @@ function AssemblyAdditionalTasks(props) {
         }, {
             field: 'timestamp_completed',
             headerName: 'Completed',
-            type: 'date',
             width: 195,
-            valueGetter: params => {return moment(params.row.timestamp_completed).format('LLL')}
+            valueGetter: params => {return moment(params.row.timestamp_completed).format('ll')}
         }, {
             field: 'createdAt',
             headerName: 'Created',
-            type: 'date',
             width: 195,
-            valueGetter: params => {return moment(params.row.createdAt).format('LLL')}
+            valueGetter: params => {return moment(params.row.createdAt).format('lll')}
         } , {
             field: 'updatedAt',
             headerName: 'Last Update',
-            type: 'date',
             width: 195,
             valueGetter: params => {return moment(params.row.updatedAt).format('LLL')}
         } , {
             field: 'deletedAt',
             headerName: 'Deleted',
-            type: 'date',
             width: 195,
             valueGetter: (params) => {
                 if (params.row.deletedAt != null) {

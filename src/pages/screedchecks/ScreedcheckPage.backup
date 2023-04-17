@@ -1,0 +1,118 @@
+import React, {useContext, useEffect, useState} from 'react';
+import {useParams} from "react-router-dom";
+import http from "../../http";
+import {Card, CardContent, Grid, Skeleton} from "@mui/material";
+import {UserContext} from "../../context/UserContext";
+import {TableHeader, Table, DataTableCell, TableCell, TableBody} from "@david.kucsai/react-pdf-table";
+import {Page, Document, PDFViewer} from "@react-pdf/renderer";
+
+const ScreedcheckPage = () => {
+    let {id} = useParams();
+    const [screedcheck, setScreedcheck] = useState({})
+    const [customer, setCustomer] = useState({})
+    const [project, setProject] = useState({})
+    const user = useContext(UserContext)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const readScreedcheck = async () => {
+            setLoading(true)
+            await http.get(`/api/screedcheck/${id}`, {
+                params: {
+                    detail: "true"
+                }
+            })
+                .then((response) => {
+                    setScreedcheck(response.data.screedcheck)
+                    setProject(response.data.screedcheck.Project)
+                    const customerId = response.data.screedcheck.Project.customerId
+                    http.get(`/api/customer/${customerId}`, {
+                        params: {
+                            detail: "true"
+                        }
+                    })
+                        .then((response2) => {
+                            setCustomer(response2.data.customer);
+                        })
+                        .then(() => {
+                            setLoading(false)
+                        })
+                })
+
+
+        }
+        return readScreedcheck
+    }, [id])
+
+
+
+
+    return (
+        <Grid container spacing={2} sx={{margin: 3}}>
+            <Grid item xl={3} xs={4}>
+                <Card>
+                    <CardContent>
+                        {JSON.stringify(screedcheck)}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent>
+                        {JSON.stringify(customer)}
+                    </CardContent>
+                </Card>
+            </Grid>
+
+            <Grid item xl={8} xs={12}>
+                <Card>
+                    <CardContent>
+                        {loading ? <Skeleton/>
+                            :
+                            /*<Button startIcon={<Print/>} component={LinkBehavior} variant="outlined">
+                                Print Protocol
+                            </Button>*/
+
+                            <PDFViewer>
+                                <Document>
+                                    <Page>
+                                        <Table
+                                            data={[
+                                                {firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000"}
+                                        ]}
+                                            >
+                                            <TableHeader>
+                                                <TableCell>
+                                                    First Name
+                                                </TableCell>
+                                                <TableCell>
+                                                    Last Name
+                                                </TableCell>
+                                                <TableCell>
+                                                    DOB
+                                                </TableCell>
+                                                <TableCell>
+                                                    Country
+                                                </TableCell>
+                                                <TableCell>
+                                                    Phone Number
+                                                </TableCell>
+                                            </TableHeader>
+                                            <TableBody>
+                                                <DataTableCell getContent={(r) => r.firstName}/>
+                                                <DataTableCell getContent={(r) => r.lastName}/>
+                                                <DataTableCell getContent={(r) => r.dob.toLocaleString()}/>
+                                                <DataTableCell getContent={(r) => r.country}/>
+                                                <DataTableCell getContent={(r) => r.phoneNumber}/>
+                                            </TableBody>
+                                        </Table>
+                                    </Page>
+                                </Document>
+                            </PDFViewer>
+                        }
+                    </CardContent>
+                </Card>
+            </Grid>
+        </Grid>
+    );
+};
+
+export default ScreedcheckPage;

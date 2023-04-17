@@ -12,7 +12,6 @@ function RequestList(props) {
         {
             field: 'arrivalDate',
             headerName: 'Arrival Date',
-            type: 'date',
             width: 110,
             valueGetter: params => {
                 return new Date(params.row.arrivalDate)
@@ -21,7 +20,6 @@ function RequestList(props) {
         {
             field: 'departureDate',
             headerName: 'Departure Date',
-            type: 'date',
             width: 110,
             valueGetter: params => {
                 return moment(params.row.arrivalDate).add(params.row.nightsToStay, 'd').format('LLL')
