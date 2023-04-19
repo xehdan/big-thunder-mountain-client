@@ -34,6 +34,7 @@ import 'moment/locale/de'
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import ScreedcheckBulkConfirm from "./components/screedcheck/ScreedcheckBulkConfirm";
+import RoutePlanner from "./pages/routePlanner/RoutePlanner";
 
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
                       <Route path="/assemblies" element={<AssemblyList/>}/>
                       <Route exact path="/complaint/:id" element={<ComplaintPage/>}/>
                       <Route path="/complaints" element={<ComplaintList/>}/>
+                      <Route exact path="/route" element={<RoutePlanner/>}/>
                       <Route exact path="/mailer" element={<Mailer/>}/>
                       <Route exact path="/booking" element={<BookingDashboard/>}/>
                   </Routes>

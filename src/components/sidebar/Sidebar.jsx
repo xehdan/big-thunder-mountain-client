@@ -16,7 +16,7 @@ import {
     Biotech,
     CalendarMonth,
     ContactPage,
-    Dashboard,
+    Dashboard, GpsFixed,
     Hotel,
     Mail,
     Plumbing,
@@ -75,6 +75,10 @@ function Sidebar() {
                 name: 'Mailer',
                 icon: <Mail color="primary"/>,
                 to: '/mailer'
+            }, {
+                name: 'Routes',
+                icon: <GpsFixed color="primary"/>,
+                to: '/route'
             }, {
                 name: 'Booking',
                 icon: <Hotel color="primary"/>,
