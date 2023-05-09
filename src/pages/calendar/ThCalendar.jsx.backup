@@ -8,6 +8,7 @@ import {
     Draggable,
     toast
 } from "@mobiscroll/react";
+import "@mobiscroll/react/dist/css/mobiscroll.scss"
 import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 import http from "../../http";
 import moment from "moment";

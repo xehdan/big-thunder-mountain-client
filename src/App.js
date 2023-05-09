@@ -10,7 +10,6 @@ import CustomerPage from "./pages/customers/CustomerPage";
 import ScreedcheckList from "./pages/screedchecks/ScreedcheckList";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ScreedcheckPage from "./pages/screedchecks/ScreedcheckPage.jsx";
-import ThCalendar from "./pages/calendar/ThCalendar";
 import AssemblyPage from "./pages/assembly/AssemblyPage";
 import AssemblyList from "./pages/assembly/AssemblyList";
 import Mailer from "./pages/mailer/Mailer";
@@ -35,6 +34,9 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import ScreedcheckBulkConfirm from "./components/screedcheck/ScreedcheckBulkConfirm";
 import RoutePlanner from "./pages/routePlanner/RoutePlanner";
+import SendTextMessageDialog from "./components/messages/sendTextMessageDialog";
+import CalendarPage from "./pages/calendar/CalendarPage";
+
 
 
 function App() {
@@ -49,15 +51,6 @@ function App() {
     })*/
 
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
-/*
-    const theme = createTheme({
-        palette: {
-            mode: 'dark',
-            primary: {
-                main: '#f7a700'
-            }
-        }
-    })*/
 
     const theme = useMemo(
         () =>
@@ -97,7 +90,7 @@ function App() {
                       <Route path="/customers" element={<CustomerList/>}/>
                       <Route path="/customer/create" element={<CustomerCreate/>}/>
                       <Route exact path="/customer/:id" element={<CustomerPage/>}/>
-                      <Route path="/calendar" element={<ThCalendar/>}/>
+                      <Route path="/calendar" element={<CalendarPage/>}/>
                       <Route exact path="/assembly/:id" element={<AssemblyPage/>}/>
                       <Route exact path="/assembly/create" element={<AssemblyCreate/>} />
                       <Route path="/assemblies" element={<AssemblyList/>}/>
@@ -106,6 +99,7 @@ function App() {
                       <Route exact path="/route" element={<RoutePlanner/>}/>
                       <Route exact path="/mailer" element={<Mailer/>}/>
                       <Route exact path="/booking" element={<BookingDashboard/>}/>
+                      <Route exact path="/sms" element={<SendTextMessageDialog/>} />
                   </Routes>
               </div>
           </Router>

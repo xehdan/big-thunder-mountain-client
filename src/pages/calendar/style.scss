@@ -1,0 +1,89 @@
+$mbsc-ios-accent: #f7a700;
+$mbsc-ios-dark-accent: #f7a700;
+$mbsc-material-accent: #f7a700;
+$msbc-material-dark-accent: #f7a700;
+$mbsc-mobiscroll-accent: #f7a700;
+$mbsc-mobiscroll-dark-accent: #f7a700;
+$mbsc-windows-accent: #f7a700;
+$msbc-windows-dark-accent: #f7a700;
+
+
+//@import "~@mobiscroll/react/dist/css/mobiscroll.modular.scss";
+@import '@mobiscroll/react/dist/css/mobiscroll.scss';
+
+
+.md-search-header-bar .mbsc-textfield-wrapper.mbsc-form-control-wrapper {
+  width: 400px;
+  margin: 12px auto;
+}
+
+.md-search-popup .mbsc-popover-list {
+  width: 400px;
+}
+
+.md-search-popup .mbsc-event-list {
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.md-search-events .mbsc-ios-dark.mbsc-textfield-box {
+  background: #313131;
+}
+
+.md-tooltip .mbsc-popup-content {
+  padding: 0
+}
+
+.md-tooltip {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.md-tooltip-header {
+  padding: 12px 16px;
+  color: #eee
+}
+
+.md-tooltip-info {
+  padding: 16px 16px 60px 16px;
+  position: relative;
+  line-height: 32px;
+}
+
+.MuiPopper-root{
+  z-index: 99999999 !important;
+}
+
+.md-tooltip-time,
+.md-tooltip-status-button {
+  float: right;
+}
+
+.md-tooltip-title {
+  margin-bottom: 15px;
+}
+
+.md-tooltip-text {
+  font-weight: 300;
+}
+
+.md-tooltip.info .mbsc-button {
+  font-size: 14px;
+  margin: 0
+}
+
+.md-tooltip.info .mbsc-button.mbsc-material {
+  font-size: 12px;
+}
+
+.md-tooltip-view-button {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+}
+
+.md-tooltip-delete-button {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}

@@ -4,6 +4,7 @@ import {DataGrid, GridActionsCellItem, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment/moment";
 import {Link} from "react-router-dom";
 import {Edit, Visibility} from "@mui/icons-material";
+import {Avatar, AvatarGroup, Tooltip, Typography} from "@mui/material";
 
 AssemblyTable.propTypes = {
     assemblies: PropTypes.array.isRequired,
@@ -18,15 +19,32 @@ function AssemblyTable(props) {
         const customer = project.Customer
         if (customer.company) {
             return customer.company
-        } else {
-            return `${customer.firstName} ${customer.lastName}`
         }
+        return `${customer.firstName} ${customer.lastName}`
     }
 
     function getLocation(params) {
         const project = params.row.Project
         const deliveryAddress = project.customerDeliveryAddress
         return `${deliveryAddress.zipcode} ${deliveryAddress.city}`
+    }
+
+    function renderEmployeeAvatar(params) {
+        const employees = params.row.Employees
+        if (employees.length > 1) {
+            return (
+                <AvatarGroup max={4}>
+                    {employees.map((element, index) => (
+                        <Tooltip title={element.firstName + ' ' + element.lastName}>
+                            <Avatar key={index} alt={element.firstName + ' ' + element.lastName} sx={{width: 24, height: 24, fontSize: '0.8rem'}}>{element.firstName.substring(0,1)}{element.lastName.substring(0,1)}</Avatar>
+                        </Tooltip>
+                    ))}
+                </AvatarGroup>
+            )
+        } else {
+            return <Typography variant="caption">not assigned</Typography>
+
+        }
     }
 
     const columns = [
@@ -52,12 +70,19 @@ function AssemblyTable(props) {
                     return `${params.row.estimated_duration} Days`
                 } else {
                     return `${params.row.estimated_duration} Day`
-                }}
+                }
+            }
         },
         {
             field: 'space',
             headerName: 'Space',
             width: 100,
+        },
+        {
+            field: 'assignedMechanics',
+            headerName: 'Mechanics',
+            width: 100,
+            renderCell: renderEmployeeAvatar
         },
         {
             field: 'projectId',
@@ -107,6 +132,7 @@ function AssemblyTable(props) {
         <DataGrid
             columns={columns}
             rows={props.assemblies}
+            loading={props.loading ? props.loading : false}
             density={props.dense ? 'compact' : 'standard'}
             autoPageSize
             pageSize={20}
@@ -122,6 +148,7 @@ function AssemblyTable(props) {
                 }
             }}
         />
+
     );
 }
 
